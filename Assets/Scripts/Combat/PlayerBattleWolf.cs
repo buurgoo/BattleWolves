@@ -12,12 +12,14 @@ public class PlayerBattleWolf : BattleWolf
     public void SelectSkill1()
     {
         selectedSkill = skill1;
+        Debug.Log("Player selected Skill 1.");
         battleManager.PlayerSelectedSkill(this);
     }
 
     public void SelectSkill2()
     {
         selectedSkill = skill2;
+        Debug.Log("Player selected Skill 2.");
         battleManager.PlayerSelectedSkill(this);
     }
 

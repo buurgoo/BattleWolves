@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public class BattleManager
+public class BattleManager : MonoBehaviour
 {
     [SerializeField] public BattleWolf player1;
     [SerializeField] public BattleWolf player2;
 
     private bool _currentTurn = false;
     private Skill _playerSelectedSkill;
+
+    public void Start()
+    {
+        TurnStart();
+    }
 
     private void SwitchTurn()
     {
@@ -29,7 +34,7 @@ public class BattleManager
     private void TurnStart()
     {
         BattleWolf player = GetPlayer();
-
+        Debug.Log($"Waiting for '{_currentTurn}' player.");
         player.SelectSkill();
     }
 
@@ -45,6 +50,7 @@ public class BattleManager
     private void TurnContinue()
     {
         _playerSelectedSkill.Cast(GetPlayer(), GetOponent());
+        Debug.Log($"'{_currentTurn}' player finished turn.");
 
         _playerSelectedSkill = null;
         SwitchTurn();

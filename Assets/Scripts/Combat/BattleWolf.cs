@@ -57,6 +57,8 @@ public class BattleWolf : MonoBehaviour
     public void TakeDamage(int attackDamage)
     {
         _currentHP -= attackDamage;
+        Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
+
         if (_currentHP < 0) 
         { 
             _currentHP = 0;

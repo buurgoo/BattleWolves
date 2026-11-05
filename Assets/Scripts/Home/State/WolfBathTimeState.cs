@@ -1,4 +1,6 @@
-public class WolfBathTimeState : BaseWolfState
-{
+// using UnityEngine;
+
+// public class WolfBathTimeState : BaseWolfState
+// {
     
-}
+// }

@@ -1,4 +1,6 @@
-public class BaseWolfState
+using UnityEngine;
+
+public abstract class BaseWolfState
 {
     protected WolfController wolf;
 

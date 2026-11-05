@@ -1,6 +1,6 @@
-using UnityEngine;
+// using UnityEngine;
 
-public class WolfEatState : BaseWolfState
-{
+// public class WolfEatState : BaseWolfState
+// {
     
-}
+// }

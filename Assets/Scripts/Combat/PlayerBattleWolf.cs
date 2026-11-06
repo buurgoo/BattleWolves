@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,19 +7,21 @@ public class PlayerBattleWolf : BattleWolf
     [SerializeField] private Button skillButton1;
     [SerializeField] private Button skillButton2;
 
-    private Skill skill1 = new Scratch();
-    private Skill skill2 = new BleedingScratch();
+    private System.Type skillType1 = typeof(Scratch);
+    private System.Type skillType2 = typeof(BleedingScratch);
 
     public void SelectSkill1()
     {
-        selectedSkill = skill1;
+        //selectedSkill = skill1;
+        selectedSkill = (Skill)Activator.CreateInstance(skillType1);
         Debug.Log("Player selected Skill 1.");
         battleManager.PlayerSelectedSkill(this);
     }
 
     public void SelectSkill2()
     {
-        selectedSkill = skill2;
+        //selectedSkill = skill2;
+        selectedSkill = (Skill)Activator.CreateInstance(skillType2);
         Debug.Log("Player selected Skill 2.");
         battleManager.PlayerSelectedSkill(this);
     }

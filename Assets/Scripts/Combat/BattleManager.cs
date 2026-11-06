@@ -31,10 +31,27 @@ public class BattleManager : MonoBehaviour
         else return player2;
     }
 
+    private void LingeringSkillsTick(BattleWolf player)
+    {
+        for (int i = 0; i < player.lingeringSkills.Length; i++) 
+        {
+            if (player.lingeringSkills[i] != null)
+            {
+                if (player.lingeringSkills[i].isActive)
+                {
+                    player.lingeringSkills[i].Tick(player);
+                }
+                else { player.lingeringSkills[i] = null; }
+            }
+        }
+    }
+
     private void TurnStart()
     {
         BattleWolf player = GetPlayer();
         Debug.Log($"Waiting for '{_currentTurn}' player.");
+
+        LingeringSkillsTick(player);
         player.SelectSkill();
     }
 

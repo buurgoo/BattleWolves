@@ -6,8 +6,8 @@ public class PlayerBattleWolf : BattleWolf
     [SerializeField] private Button skillButton1;
     [SerializeField] private Button skillButton2;
 
-    private Skill skill1 = new BasicAttack();
-    private Skill skill2 = new Pass();
+    private Skill skill1 = new Scratch();
+    private Skill skill2 = new BleedingScratch();
 
     public void SelectSkill1()
     {
@@ -23,7 +23,7 @@ public class PlayerBattleWolf : BattleWolf
         battleManager.PlayerSelectedSkill(this);
     }
 
-    public override void OnStart()
+    public override void OnAwake()
     {
         skillButton1.onClick.AddListener(SelectSkill1);
         skillButton2.onClick.AddListener(SelectSkill2);

@@ -19,12 +19,20 @@ public abstract class LingeringSkill : Skill
 
     public void Tick(BattleWolf wolf) 
     {
-        TickEffect(wolf);
-        remainingTicks -= 1;
-
-        if (remainingTicks == 0) { isActive = false; }
+        if (remainingTicks == 0)
+        {
+            isActive = false;
+            ExpireEffect(wolf);
+        }
+        else
+        {
+            TickEffect(wolf);
+            remainingTicks -= 1;
+        }
     }
 
-    public abstract void TickEffect(BattleWolf wolf);
     public abstract void CastEffect(BattleWolf caster, BattleWolf oponent);
+    public abstract void TickEffect(BattleWolf wolf);
+    public abstract void ExpireEffect(BattleWolf wolf);
+
 }

@@ -1,13 +1,24 @@
-public class Scratch : Skill
+using UnityEngine;
+
+public class Scratch : LingeringSkill
 {
     private int _skillId = 1;
-    public SkillType Type = SkillType.Attack;
+    public SkillType skillType = SkillType.Conniving;
 
-    public string name = "Scratch";
-    public string description = "Deal 50% of Attack as damage.";
+    public int totalTicks = 3;
+    private bool lingersOnOponent = true;
 
-    public override void Cast(BattleWolf caster, BattleWolf oponent)
+    public override void CastEffect(BattleWolf caster, BattleWolf oponent)
     {
-        oponent.TakeDamage(caster.CalculateSkillDamage(0.5f));
+        Bite scratch = new Bite();
+        scratch.Cast(caster, oponent);
     }
+
+    public override void TickEffect(BattleWolf wolf)
+    {
+        wolf.TakeSkillDamage(25);
+        Debug.Log("Bleed tick");
+    }
+
+    public override void ExpireEffect(BattleWolf wolf) { }
 }

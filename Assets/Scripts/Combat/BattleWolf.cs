@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class BattleWolf : MonoBehaviour
+public abstract class BattleWolf : MonoBehaviour
 {
     [SerializeField] protected BattleManager battleManager;
 
-    private int _baseAttack = 100;
-    private float _obtainedAttack = 0.5f;
-    private float _bonusAttack = 0f;
-    private int _baselineAttack;
+    private int _baseAtk = 100;
+    private float _obtainedAtk = 0.5f;
+    private float _bonusAtk = 0f;
+    private int _baselineAtk;
 
-    private float _baseDefence = 0.1f;
-    private float _obtainedDefence = 0f;
-    private float _bonusDefence = 0f;
-    private float _baselineDefence;
+    private float _baseDef = 0.5f;
+    private float _obtainedDef = 0.1f;
+    private float _bonusDef = 0.1f;
+    private float _baselineDef;
 
     private int _baseHP = 1000;
     private float _obtainedHP = 0f;
@@ -34,9 +34,9 @@ public class BattleWolf : MonoBehaviour
 
     private void InitStats()
     {
-        _baselineAttack = (int)(_baseAttack * (1 + _obtainedAttack));
+        _baselineAtk = (int)(_baseAtk * (1 + _obtainedAtk));
         _baselineHP = (int)(_baseHP * (1 + _obtainedHP));
-        _baselineDefence = _baseDefence + _obtainedDefence;
+        _baselineDef = Mathf.Min(1, _baseDef) * Mathf.Min(1, _obtainedDef);
 
         _maxHP = _baselineHP;
         _currentHP = _maxHP;
@@ -44,14 +44,55 @@ public class BattleWolf : MonoBehaviour
 
     public virtual void OnAwake() { }
 
-    public int CalculateSkillDamage(float motionValue)
+    public void ModifyAtk(float atk)
     {
-        return (int)(_baselineAttack * (1 + _bonusAttack) * motionValue);
+        _bonusAtk += atk;
     }
 
-    public void TakeDamage(int attackDamage)
+    public void ModifyDef(float def)
     {
-        _currentHP -= (int)(attackDamage * (1 - (_baselineDefence + _bonusDefence)));
+        _bonusDef += def;
+    }
+
+    public void ModifyHP(float HP, bool filled)
+    {
+        _bonusHP += HP;
+        int extraHP = (int)(_baselineHP * _bonusHP);
+        _maxHP += extraHP;
+        if (filled)
+        {
+            _currentHP += extraHP;
+        }
+        _currentHP = Mathf.Min(_currentHP, _maxHP);
+    }
+
+    public int GetCurrentHP() { return _currentHP; }
+
+    public float GetRemainingHP()
+    {
+        return _currentHP / _maxHP;
+    }
+
+    public int CalculateSkillDamage(float motionValue)
+    {
+        return (int)(_baselineAtk * (1 + _bonusAtk) * motionValue);
+    }
+
+    public void TakeSkillDamage(int attackDamage)
+    {
+        _currentHP -= (int)(attackDamage * (1 - Mathf.Min(1, _baselineDef) * Mathf.Min(1, _bonusDef)));
+        Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
+
+        if (_currentHP <= 0)
+        {
+            _currentHP = 0;
+            Debug.Log("Wolf dead");
+        }
+    }
+
+    public void TakeDirectDamage(int attackDamage)
+    {
+        _currentHP -= attackDamage;
         Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
 
         if (_currentHP < 0)
@@ -61,11 +102,7 @@ public class BattleWolf : MonoBehaviour
         }
     }
 
-    public virtual void SelectSkill()
-    {
-        selectedSkill = new Scratch();
-        battleManager.PlayerSelectedSkill(this);
-    }
+    public abstract void SelectSkill();
 
     public void SetLingeringSkill(LingeringSkill effect)
     {

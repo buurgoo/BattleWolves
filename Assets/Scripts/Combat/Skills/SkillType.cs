@@ -1,6 +1,6 @@
 public enum SkillType
 {
-    Attack = 0,
-    Defence = 1,
-    Health = 2,
+    Aggressive = 0, // Atk
+    Intimidating = 1, // Def
+    Conniving = 2, // HP
 }

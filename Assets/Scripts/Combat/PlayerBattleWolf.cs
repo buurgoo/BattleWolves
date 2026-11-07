@@ -7,8 +7,8 @@ public class PlayerBattleWolf : BattleWolf
     [SerializeField] private Button skillButton1;
     [SerializeField] private Button skillButton2;
 
-    private System.Type skillType1 = typeof(Scratch);
-    private System.Type skillType2 = typeof(BleedingScratch);
+    private System.Type skillType1 = typeof(Bite);
+    private System.Type skillType2 = typeof(Scratch);
 
     public void SelectSkill1()
     {

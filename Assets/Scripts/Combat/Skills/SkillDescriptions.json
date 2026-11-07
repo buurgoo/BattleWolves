@@ -1,0 +1,52 @@
+{
+    // Aggressive skills
+    "2": {
+        "name": "Bite",
+        "description": "Deal 100% of Atk as damage. If HP < 50%, deal 150% of Atk instead."
+    },
+    "3": {
+        "name": "Rage",
+        "description": "Increase Atk by 50% and decrease Def by 100% for the rest of the fight."
+    },
+    "8": {
+        "name": "Go for the Throat",
+        "effect_name": "Sick",
+        "description": "Deal 250% of Atk as damage. If Def < 10%, has a 10% chance to inflict sickness. Has a 10% chance to miss."
+    },
+    // Intimidating skills
+    "4": {
+        "name": "Body Slam",
+        "description": "Deal 50% of current HP as damage."
+    },
+    "5": {
+        "name": "Lick your Wounds",
+        "description": "Restore 10% of Max HP. Remove all active effects."
+    },
+    "7": {
+        "name": "Intimidate",
+        "description": "Decrease oponent Atk by 25%. Increase oponent Def by 10%."
+    },
+    // Conniving skills
+    "0": {
+        "name": "Wait",
+        "description": "Pass your turn."
+    },
+    "1": {
+        "name": "Scratch",
+        "effect_name": "Bleed",
+        "description": "Deal 25% of Atk as damage. Inflict bleed for the next 3 turns. Bleed: Deal 25 direct damage."
+    },
+    "6": {
+        "name": "Prepare to Strike Back",
+        "effect_name": "Defensive Stance",
+        "description": "Increase Def by 70% for this turn. If damage taken this turn, start your next turn with Strike."
+    },
+    "9": {
+        "name": "Finish off the Wounded",
+        "description": "Deal 20% of Atk as damage. For every 10% of oponent Max HP missing, deal an additional 10%."
+    },
+    "10": {
+        "name": "Strike",
+        "description": "Deal 25 direct damage."
+    }
+}

@@ -6,7 +6,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public BattleWolf player2;
 
     private bool _currentTurn = false;
-    private Skill _playerSelectedSkill;
 
     public void Start()
     {
@@ -52,6 +51,10 @@ public class BattleManager : MonoBehaviour
         Debug.Log($"Waiting for '{_currentTurn}' player.");
 
         LingeringSkillsTick(player);
+        if (player.selectedSkill != null) 
+        { 
+            player.selectedSkill.Cast(player, GetOponent()); 
+        }
         player.SelectSkill();
     }
 
@@ -59,17 +62,17 @@ public class BattleManager : MonoBehaviour
     {
         if (player == GetPlayer())
         {
-            _playerSelectedSkill = player.selectedSkill;
             TurnContinue();
         }
     }
 
     private void TurnContinue()
     {
-        _playerSelectedSkill.Cast(GetPlayer(), GetOponent());
+        BattleWolf player = GetPlayer();
+        player.selectedSkill.Cast(player, GetOponent());
         Debug.Log($"'{_currentTurn}' player finished turn.");
 
-        _playerSelectedSkill = null;
+        player.selectedSkill = null;
         SwitchTurn();
 
         TurnStart();

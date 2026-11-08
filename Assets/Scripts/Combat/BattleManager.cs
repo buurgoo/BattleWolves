@@ -7,10 +7,12 @@ public class BattleManager : MonoBehaviour
 
     private bool _currentTurn = false;
 
-    public void Start()
-    {
-        TurnStart();
-    }
+    //public void Start()
+    //{
+    //    TurnStart();
+    //}
+
+    public void StartCombat() { TurnStart(); }
 
     private void SwitchTurn()
     {
@@ -32,7 +34,7 @@ public class BattleManager : MonoBehaviour
 
     private void LingeringSkillsTick(BattleWolf player)
     {
-        for (int i = 0; i < player.lingeringSkills.Length; i++) 
+        for (int i = 0; i < player.lingeringSkills.Length; i++)
         {
             if (player.lingeringSkills[i] != null)
             {

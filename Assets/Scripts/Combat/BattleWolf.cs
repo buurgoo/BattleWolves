@@ -4,25 +4,25 @@ public abstract class BattleWolf : MonoBehaviour
 {
     [SerializeField] protected BattleManager battleManager;
 
-    private int _baseAtk = 100;
-    private float _obtainedAtk = 0.5f;
+    protected int _baseAtk = 100;
+    protected float _obtainedAtk = 0f;
     private float _bonusAtk = 0f;
     private int _baselineAtk;
 
-    private float _baseDef = 0.5f;
-    private float _obtainedDef = 0.1f;
-    private float _bonusDef = 0.1f;
+    protected int _baseDef = 100;
+    protected float _obtainedDef = 0f;
+    private float _bonusDef = 0f;
     private float _baselineDef;
 
-    private int _baseHP = 1000;
-    private float _obtainedHP = 0f;
+    protected int _baseHP = 1000;
+    protected float _obtainedHP = 0f;
     private float _bonusHP = 0f;
     private int _baselineHP;
 
     private int _maxHP;
     private int _currentHP;
 
-    public Skill selectedSkill;
+    public Skill selectedSkill = null;
 
     public LingeringSkill[] lingeringSkills = new LingeringSkill[3];
 
@@ -36,7 +36,7 @@ public abstract class BattleWolf : MonoBehaviour
     {
         _baselineAtk = (int)(_baseAtk * (1 + _obtainedAtk));
         _baselineHP = (int)(_baseHP * (1 + _obtainedHP));
-        _baselineDef = Mathf.Min(1, _baseDef) * Mathf.Min(1, _obtainedDef);
+        _baselineDef = (int)(_baseDef * (1 + _obtainedDef));
 
         _maxHP = _baselineHP;
         _currentHP = _maxHP;
@@ -80,7 +80,8 @@ public abstract class BattleWolf : MonoBehaviour
 
     public void TakeSkillDamage(int attackDamage)
     {
-        _currentHP -= (int)(attackDamage * (1 - Mathf.Min(1, _baselineDef) * Mathf.Min(1, _bonusDef)));
+        float defMultiplier = _baselineDef * (1 + _bonusDef);
+        _currentHP -= (int)(attackDamage * (1 - defMultiplier/(defMultiplier + 1000)));
         Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
 
         if (_currentHP <= 0)

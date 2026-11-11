@@ -68,9 +68,11 @@ public abstract class BattleWolf : MonoBehaviour
 
     public int GetCurrentHP() { return _currentHP; }
 
+    public int GetMaxHP() { return _maxHP; }
+
     public float GetRemainingHP()
     {
-        return _currentHP / _maxHP;
+        return (float)_currentHP / (float)_maxHP;
     }
 
     public int CalculateSkillDamage(float motionValue)
@@ -78,10 +80,11 @@ public abstract class BattleWolf : MonoBehaviour
         return (int)(_baselineAtk * (1 + _bonusAtk) * motionValue);
     }
 
-    public void TakeSkillDamage(int attackDamage)
+    public virtual int TakeSkillDamage(int attackDamage)
     {
         float defMultiplier = _baselineDef * (1 + _bonusDef);
-        _currentHP -= (int)(attackDamage * (1 - defMultiplier/(defMultiplier + 1000)));
+        int damage = (int)(attackDamage * (1 - defMultiplier / (defMultiplier + 1000)));
+        _currentHP -= damage;
         Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
 
         if (_currentHP <= 0)
@@ -89,9 +92,11 @@ public abstract class BattleWolf : MonoBehaviour
             _currentHP = 0;
             Debug.Log("Wolf dead");
         }
+
+        return damage;
     }
 
-    public void TakeDirectDamage(int attackDamage)
+    public virtual void TakeDirectDamage(int attackDamage)
     {
         _currentHP -= attackDamage;
         Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");

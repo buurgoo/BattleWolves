@@ -1,7 +1,7 @@
 public abstract class Skill
 {
-    int _skillId;
-    SkillType skillType;
+    public abstract int skillId { get; }
+    public abstract SkillType skillType { get; }
 
     public abstract void Cast(BattleWolf caster, BattleWolf oponent);
 }

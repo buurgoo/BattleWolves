@@ -1,10 +1,10 @@
 public class PrepareStrike : LingeringSkill
 {
-    private int _skillId = 6;
-    public SkillType skillType = SkillType.Conniving;
+    public override int skillId { get { return 6; } }
+    public override SkillType skillType { get { return SkillType.Conniving; } }
 
-    public int totalTicks = 0;
-    private bool lingersOnOponent = false;
+    public override int totalTicks { get { return 0; } }
+    public override bool lingersOnOponent { get { return false; } }
 
     private int castHP;
     private int expireHP;

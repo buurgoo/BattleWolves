@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerBattleWolf : BattleWolf
+public class PlayerBattleWolf : BattleWolfUI
 {
     [SerializeField] private Button skillButton1;
     [SerializeField] private Button skillButton2;

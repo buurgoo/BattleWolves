@@ -1,4 +1,4 @@
-public class AutoBattleWolf : BattleWolf
+public class AutoBattleWolf : BattleWolfUI
 {
     public override void SelectSkill()
     {

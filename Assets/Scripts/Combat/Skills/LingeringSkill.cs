@@ -1,10 +1,12 @@
+using UnityEngine;
+
 public abstract class LingeringSkill : Skill
 {
-    int totalTicks;
+    public abstract int totalTicks { get; }
     public int remainingTicks;
     public bool isActive;
 
-    bool lingersOnOponent;
+    public abstract bool lingersOnOponent { get; }
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
@@ -21,6 +23,7 @@ public abstract class LingeringSkill : Skill
     {
         if (remainingTicks == 0)
         {
+            Debug.Log("expire");
             isActive = false;
             ExpireEffect(wolf);
         }

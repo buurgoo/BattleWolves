@@ -55,7 +55,7 @@ public class BattleManager : MonoBehaviour
         LingeringSkillsTick(player);
         if (player.selectedSkill != null) 
         { 
-            player.selectedSkill.Cast(player, GetOponent()); 
+            player.selectedSkill.Cast(player, GetOponent());
         }
         player.SelectSkill();
     }

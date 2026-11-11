@@ -5,6 +5,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public BattleWolf player1;
     [SerializeField] public BattleWolf player2;
 
+    [SerializeField] private CombatUI ui;
+
     private bool _currentTurn = false;
 
     //public void Start()
@@ -53,6 +55,8 @@ public class BattleManager : MonoBehaviour
         Debug.Log($"Waiting for '{_currentTurn}' player.");
 
         LingeringSkillsTick(player);
+        ui.displayEffects.Invoke(player.lingeringSkills, _currentTurn);
+
         if (player.selectedSkill != null) 
         { 
             player.selectedSkill.Cast(player, GetOponent());

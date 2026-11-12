@@ -32,6 +32,8 @@ public class PlayerBattleWolf : BattleWolfUI
         skillType3 = playerStats.skill3;
         skillType4 = playerStats.skill4;
 
+        ui.SetSkillButtonText(skillType1, skillType2, skillType3, skillType4);
+
         _baseAtk = LevelScalings.levelScalings[playerStats.level].Atk;
         _baseDef = LevelScalings.levelScalings[playerStats.level].Def;
         _baseHP = LevelScalings.levelScalings[playerStats.level].HP;

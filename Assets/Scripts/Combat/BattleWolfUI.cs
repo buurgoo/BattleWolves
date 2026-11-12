@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BattleWolfUI : BattleWolf
 {
-    [SerializeField] private CombatUI ui;
+    [SerializeField] protected CombatUI ui;
     [SerializeField] public bool playerId;
 
     public override int TakeSkillDamage(int attackDamage) 

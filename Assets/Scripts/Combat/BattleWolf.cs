@@ -4,17 +4,17 @@ public abstract class BattleWolf : MonoBehaviour
 {
     [SerializeField] protected BattleManager battleManager;
 
-    protected int _baseAtk = 100;
+    protected int _baseAtk = 0;
     protected float _obtainedAtk = 0f;
     private float _bonusAtk = 0f;
     private int _baselineAtk;
 
-    protected int _baseDef = 100;
+    protected int _baseDef = 0;
     protected float _obtainedDef = 0f;
     private float _bonusDef = 0f;
     private float _baselineDef;
 
-    protected int _baseHP = 1000;
+    protected int _baseHP = 0;
     protected float _obtainedHP = 0f;
     private float _bonusHP = 0f;
     private int _baselineHP;
@@ -22,17 +22,22 @@ public abstract class BattleWolf : MonoBehaviour
     private int _maxHP;
     private int _currentHP;
 
+    public abstract PlayerStats playerStats { get; }
+
     public Skill selectedSkill = null;
 
     public LingeringSkill[] lingeringSkills = new LingeringSkill[3];
 
-    public void Awake()
+    public void Init()
     {
-        InitStats();
+        InitBaseStats();
+        InitBaselineStats();
         OnAwake();
     }
 
-    private void InitStats()
+    public abstract void InitBaseStats();
+
+    private void InitBaselineStats()
     {
         _baselineAtk = (int)(_baseAtk * (1 + _obtainedAtk));
         _baselineHP = (int)(_baseHP * (1 + _obtainedHP));

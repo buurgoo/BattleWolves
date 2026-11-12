@@ -9,10 +9,11 @@ public class BattleManager : MonoBehaviour
 
     private bool _currentTurn = false;
 
-    //public void Start()
-    //{
-    //    TurnStart();
-    //}
+    public void Start()
+    {
+        player1.Init();
+        player2.Init();
+    }
 
     public void StartCombat() { TurnStart(); }
 

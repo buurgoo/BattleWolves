@@ -8,47 +8,43 @@ public class PlayerBattleWolf : BattleWolfUI
 {
     [SerializeField] private Button skillButton1;
     [SerializeField] private Button skillButton2;
+    [SerializeField] private Button skillButton3;
+    [SerializeField] private Button skillButton4;
 
     private System.Type skillType1 = typeof(Bite);
     private System.Type skillType2 = typeof(Scratch);
-    //private System.Type skillType3 = typeof(Wait);
-    //private System.Type skillType4 = typeof(Wait);
+    private System.Type skillType3 = typeof(Wait);
+    private System.Type skillType4 = typeof(Wait);
 
+    public override PlayerStats playerStats 
+    { 
+        get 
+        {
+            return new PlayerStats(typeof(Bite), typeof(Scratch), typeof(Wait), typeof(Wait),
+                                    10, 1, 0, 1, 0); 
+        } 
+    }
 
-    //public PlayerBattleWolf(System.Type skill1, System.Type skill2, System.Type skill3, System.Type skill4,
-    //                        int level, float sleep, float hunger, float cleanliness, float bloodthirst)
-    //{
-    //    skillType1 = skill1;
-    //    skillType2 = skill2;
-    //    skillType3 = skill3;
-    //    skillType4 = skill4;
+    public override void InitBaseStats()
+    {
+        skillType1 = playerStats.skill1;
+        skillType2 = playerStats.skill2;
+        skillType3 = playerStats.skill3;
+        skillType4 = playerStats.skill4;
 
-    //    try
-    //    {
-    //        using StreamReader reader = new("LevelStatScalings.json");
-    //        string levelScalings = reader.ReadToEnd();
-    //        Dictionary<int, Dictionary<string, int>> levelScalingsObj = JsonUtility.FromJson<Dictionary<int, Dictionary<string, int>>>(levelScalings);
+        _baseAtk = LevelScalings.levelScalings[playerStats.level].Atk;
+        _baseDef = LevelScalings.levelScalings[playerStats.level].Def;
+        _baseHP = LevelScalings.levelScalings[playerStats.level].HP;
 
-    //        _baseAtk = levelScalingsObj[level]["Atk"];
-    //        _baseDef = levelScalingsObj[level]["Def"];
-    //        _baseHP = levelScalingsObj[level]["HP"];
-    //    }
-    //    catch (IOException e)
-    //    {
-    //        Console.WriteLine("The 'LevelStatScalings.json' file could not be read:");
-    //        Console.WriteLine(e.Message);
-    //    }
-
-    //    if (sleep < 0.5f) { _obtainedAtk -= 0.3f; _obtainedDef -= 0.3f; }
-    //    if (hunger > 0.75f) { _obtainedAtk -= 0.5f; _obtainedHP -= 0.1f; }
-    //    else if (hunger > 0.5f) { _obtainedAtk += 0.1f; _obtainedHP -= 0.1f; }
-    //    if (cleanliness < 0.5f) { _obtainedDef += 0.2f; _obtainedHP -= 0.4f; }
-    //    if (bloodthirst > 0.5f) { _obtainedAtk += 0.5f; _obtainedDef -= 0.5f; }
-    //}
+        if (playerStats.sleep < 0.5f) { _obtainedAtk -= 0.3f; _obtainedDef -= 0.3f; }
+        if (playerStats.hunger > 0.75f) { _obtainedAtk -= 0.5f; _obtainedHP -= 0.1f; }
+        else if (playerStats.hunger > 0.5f) { _obtainedAtk += 0.1f; _obtainedHP -= 0.1f; }
+        if (playerStats.cleanliness < 0.5f) { _obtainedDef += 0.2f; _obtainedHP -= 0.4f; }
+        if (playerStats.bloodthirst > 0.5f) { _obtainedAtk += 0.5f; _obtainedDef -= 0.5f; }
+    }
 
     public void SelectSkill1()
     {
-        //selectedSkill = skill1;
         selectedSkill = (Skill)Activator.CreateInstance(skillType1);
         Debug.Log("Player selected Skill 1.");
         battleManager.PlayerSelectedSkill(this);
@@ -56,9 +52,21 @@ public class PlayerBattleWolf : BattleWolfUI
 
     public void SelectSkill2()
     {
-        //selectedSkill = skill2;
         selectedSkill = (Skill)Activator.CreateInstance(skillType2);
         Debug.Log("Player selected Skill 2.");
+        battleManager.PlayerSelectedSkill(this);
+    }
+
+    public void SelectSkill3()
+    {
+        selectedSkill = (Skill)Activator.CreateInstance(skillType3);
+        Debug.Log("Player selected Skill 3.");
+        battleManager.PlayerSelectedSkill(this);
+    }
+    public void SelectSkill4()
+    {
+        selectedSkill = (Skill)Activator.CreateInstance(skillType4);
+        Debug.Log("Player selected Skill 4.");
         battleManager.PlayerSelectedSkill(this);
     }
 
@@ -66,14 +74,20 @@ public class PlayerBattleWolf : BattleWolfUI
     {
         skillButton1.onClick.AddListener(SelectSkill1);
         skillButton2.onClick.AddListener(SelectSkill2);
+        skillButton3.onClick.AddListener(SelectSkill3);
+        skillButton4.onClick.AddListener(SelectSkill4);
 
         skillButton1.enabled = false;
         skillButton2.enabled = false;
+        skillButton3.enabled = false;
+        skillButton4.enabled = false;
     }
 
     public override void SelectSkill()
     {
         skillButton1.enabled = true;
         skillButton2.enabled = true;
+        skillButton3.enabled = true;
+        skillButton4.enabled = true;
     }
 }

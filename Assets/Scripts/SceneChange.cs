@@ -7,6 +7,7 @@ public class SceneChange : MonoBehaviour
 
     public void ChangeScene()
     {
+        Debug.Log($"Home: Changing scene to: {nextScene}");
         SceneManager.LoadScene(nextScene);
     }
 }

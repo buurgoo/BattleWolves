@@ -395,7 +395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: 0%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1756,10 +1756,10 @@ MonoBehaviour:
     m_Flags: 0
     m_Priority: 0
   hp: 100
-  sleepy: 100
-  hungry: 100
-  stinky: 100
-  bloodthirst: 100
+  sleepy: 0
+  hungry: 0
+  stinky: 0
+  bloodthirst: 0
 --- !u!1 &1384045200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,6 +2382,8 @@ MonoBehaviour:
   wolf: {fileID: 1331155970}
   hpFill: {fileID: 538518291}
   hpText: {fileID: 914355281}
+  bloodthirstFill: {fileID: 1255020999}
+  bloodthirstText: {fileID: 270531576}
 --- !u!1 &2069363251
 GameObject:
   m_ObjectHideFlags: 0

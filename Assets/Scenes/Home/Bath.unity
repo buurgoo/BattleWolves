@@ -1619,10 +1619,10 @@ MonoBehaviour:
     m_Flags: 0
     m_Priority: 0
   hp: 100
-  sleepy: 100
-  hungry: 100
-  stinky: 100
-  bloodthirst: 100
+  sleepy: 0
+  hungry: 0
+  stinky: 0
+  bloodthirst: 0
 --- !u!1 &1353433694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,6 +2519,8 @@ MonoBehaviour:
   wolf: {fileID: 1331155970}
   hpFill: {fileID: 538518291}
   hpText: {fileID: 1836714144}
+  stinkyFill: {fileID: 95971441}
+  stinkyText: {fileID: 1727210379}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

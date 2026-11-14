@@ -15,10 +15,10 @@ public class WolfController : MonoBehaviour
 
     [Header("Wolf Stats")]
     [SerializeField, Range(0, 100)] private float hp = 100f;
-    [SerializeField, Range(0, 100)] private float sleepy = 100f;
-    [SerializeField, Range(0, 100)] private float hungry = 100f;
-    [SerializeField, Range(0, 100)] private float stinky = 100f;
-    [SerializeField, Range(0, 100)] private float bloodthirst = 100f;
+    [SerializeField, Range(0, 100)] private float sleepy = 0f;
+    [SerializeField, Range(0, 100)] private float hungry = 0f;
+    [SerializeField, Range(0, 100)] private float stinky = 0f;
+    [SerializeField, Range(0, 100)] private float bloodthirst = 0f;
 
     public float HP => hp;
     public float Sleepy => sleepy;

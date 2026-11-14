@@ -21,6 +21,10 @@ public abstract class BattleWolf : MonoBehaviour
 
     private int _maxHP;
     private int _currentHP;
+    
+    
+    //NEW CHANGES BEWARE
+    protected float _bloodthirstBonus = 0f;
 
     public abstract PlayerStats playerStats { get; }
 
@@ -82,7 +86,7 @@ public abstract class BattleWolf : MonoBehaviour
 
     public int CalculateSkillDamage(float motionValue)
     {
-        return (int)(_baselineAtk * (1 + _bonusAtk) * motionValue);
+        return (int)(_baselineAtk * (1 + _bonusAtk) * (1 + _bloodthirstBonus) * motionValue);
     }
 
     public virtual int TakeSkillDamage(int attackDamage)

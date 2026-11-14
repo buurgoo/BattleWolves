@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +33,11 @@ public class WolfHomeController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        
+        sleepy = WolfSessionData.sleepy;
+        hungry = WolfSessionData.hungry;
+        stinky = WolfSessionData.stinky;
+        bloodthirst = WolfSessionData.bloodthirst;
     }
 
     private void Start()
@@ -98,22 +104,27 @@ public class WolfHomeController : MonoBehaviour
             hungry = Mathf.Min(hungry + 5f, 100f);
             stinky = Mathf.Min(stinky + 5f, 100f);
             bloodthirst = Mathf.Min(bloodthirst + 5f, 100f);
+            
+            WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
         }
     }
 
     public void ReduceHunger(float amount)
     {
         hungry = Mathf.Max(hungry - amount, 0f);
+        WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
     }
 
         public void ReduceSleepy(float amount)
     {
         sleepy = Mathf.Max(sleepy - amount, 0f);
+        WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
     }
 
     public void ReduceStinky(float amount)
     {
         stinky = Mathf.Max(stinky - amount, 0f);
+        WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
     }
 
     public void OnEatButtonClicked()
@@ -147,5 +158,10 @@ public class WolfHomeController : MonoBehaviour
     private void OnDisable()
     {
         moveAction.Disable();
+    }
+    
+    private void OnDestroy()
+    {
+        WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
     }
 }

@@ -43,6 +43,8 @@ public class WolfHomeController : MonoBehaviour
 
     public void ChangeState(WolfState newState)
     {
+        if (currentState == newState && activeState != null) return;
+
         activeState?.EndState();
         currentState = newState;
 
@@ -100,6 +102,7 @@ public class WolfHomeController : MonoBehaviour
 
     public void OnEatButtonClicked()
     {
+        Debug.Log("Home: Eat button clicked");
         ChangeState(WolfState.Eat);
     }
 

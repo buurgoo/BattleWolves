@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 public class PlayerStats
 {
     public int level;

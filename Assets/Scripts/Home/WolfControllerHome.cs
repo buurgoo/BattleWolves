@@ -20,6 +20,8 @@ public class WolfController : MonoBehaviour
     [SerializeField, Range(0, 100)] private float stinky = 0f;
     [SerializeField, Range(0, 100)] private float bloodthirst = 0f;
 
+    private float statsTimer = 0f;
+
     public float HP => hp;
     public float Sleepy => sleepy;
     public float Hungry => hungry;
@@ -34,7 +36,7 @@ public class WolfController : MonoBehaviour
 
     private void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        // sprite = GetComponent<SpriteRenderer>();
         transform.position = spawnPosition;
         ChangeState(WolfState.Idle);
     }
@@ -69,6 +71,22 @@ public class WolfController : MonoBehaviour
         else ChangeState(WolfState.Idle);
 
         activeState?.UpdateState();
+        UpdateStats();
+    }
+
+    private void UpdateStats()
+    {
+        statsTimer += Time.deltaTime;
+
+        if (statsTimer >= 10f)
+        {
+            statsTimer -= 10f;
+
+            sleepy = Mathf.Min(sleepy + 5f, 100f);
+            hungry = Mathf.Min(hungry + 5f, 100f);
+            stinky = Mathf.Min(stinky + 5f, 100f);
+            bloodthirst = Mathf.Min(bloodthirst + 5f, 100f);
+        }
     }
 
     private void FixedUpdate()

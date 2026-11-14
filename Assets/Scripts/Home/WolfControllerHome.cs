@@ -13,6 +13,19 @@ public class WolfController : MonoBehaviour
     private SpriteRenderer sprite;
     private int faceDirection = 1;
 
+    [Header("Wolf Stats")]
+    [SerializeField, Range(0, 100)] private float hp = 100f;
+    [SerializeField, Range(0, 100)] private float sleepy = 100f;
+    [SerializeField, Range(0, 100)] private float hungry = 100f;
+    [SerializeField, Range(0, 100)] private float stinky = 100f;
+    [SerializeField, Range(0, 100)] private float bloodthirst = 100f;
+
+    public float HP => hp;
+    public float Sleepy => sleepy;
+    public float Hungry => hungry;
+    public float Stinky => stinky;
+    public float Bloodthirst => bloodthirst;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

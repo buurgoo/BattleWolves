@@ -10,6 +10,9 @@ public abstract class BattleWolfUI : BattleWolf
         int damage = base.TakeSkillDamage(attackDamage);
         ui.displayDamage.Invoke(damage, playerId);
         ui.displayHP.Invoke(GetCurrentHP(), GetMaxHP(), playerId);
+
+        if (GetCurrentHP() == 0) { ui.displayGameOver.Invoke(!playerId); }
+
         return damage;
     }
 
@@ -18,5 +21,7 @@ public abstract class BattleWolfUI : BattleWolf
         base.TakeDirectDamage(attackDamage);
         ui.displayDamage.Invoke(attackDamage, playerId);
         ui.displayHP.Invoke(GetCurrentHP(), GetMaxHP(), playerId);
+
+        if (GetCurrentHP() == 0) { ui.displayGameOver.Invoke(!playerId); }
     }
 }

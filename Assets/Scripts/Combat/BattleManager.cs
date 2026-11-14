@@ -10,12 +10,18 @@ public class BattleManager : MonoBehaviour
     private bool _currentTurn = false;
 
     public void Start()
-    {
+    {   
         player1.Init();
         player2.Init();
     }
 
-    public void StartCombat() { TurnStart(); }
+    public void StartCombat() 
+    {
+        ui.displayHP.Invoke(player1.GetCurrentHP(), player1.GetMaxHP(), false);
+        ui.displayHP.Invoke(player2.GetCurrentHP(), player2.GetMaxHP(), true);
+
+        TurnStart(); 
+    }
 
     private void SwitchTurn()
     {

@@ -20,15 +20,21 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Button playerSkill3;
     [SerializeField] private Button playerSkill4;
 
+    [SerializeField] private TextMeshProUGUI gameOver;
+
     public UnityEvent<int, int, bool> displayHP;
     public UnityEvent<int, bool> displayDamage;
     public UnityEvent<LingeringSkill[], bool> displayEffects;
+    public UnityEvent<bool> displayGameOver;
 
     public void Start()
     {
         displayHP.AddListener(DisplayHP);
         displayDamage.AddListener(DisplayDamage);
         displayEffects.AddListener(DisplayEffects);
+        displayGameOver.AddListener(DisplayGameOver);
+
+        gameOver.gameObject.SetActive(false);
     }
 
     public void SetSkillButtonText(System.Type skillType1, System.Type skillType2, 
@@ -84,5 +90,25 @@ public class CombatUI : MonoBehaviour
             }
         }
         playerEffects.text = text;
+    }
+
+    private void DisplayGameOver(bool winner)
+    {
+        player1HP.gameObject.SetActive(false);
+        player2HP.gameObject.SetActive(false);
+        player1Damage.gameObject.SetActive(false);
+        player2Damage.gameObject.SetActive(false);
+        player1Effects.gameObject.SetActive(false);
+        player2Effects.gameObject.SetActive(false);
+
+        playerSkill1.gameObject.SetActive(false);
+        playerSkill2.gameObject.SetActive(false);
+        playerSkill3.gameObject.SetActive(false);
+        playerSkill4.gameObject.SetActive(false);
+
+        gameOver.gameObject.SetActive(true);
+
+        if (!winner) { gameOver.text = "Player 1 wins!"; }
+        else { gameOver.text = "Player 2 wins!"; }
     }
 }

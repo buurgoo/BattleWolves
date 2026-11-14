@@ -4,7 +4,7 @@ using TMPro;
 
 public class WolfBathStatsUI : MonoBehaviour
 {
-    [SerializeField] private WolfController wolf;
+    [SerializeField] private WolfHomeController wolf;
 
     [SerializeField] private Image hpFill;
     [SerializeField] private TMP_Text hpText;

@@ -4,7 +4,7 @@ public class WolfWalkState : BaseWolfState
 {
     private float speed = 5f;
 
-    public WolfWalkState(WolfController wolf) : base(wolf) { }
+    public WolfWalkState(WolfHomeController wolf) : base(wolf) { }
 
     public override void EnterState()
     {

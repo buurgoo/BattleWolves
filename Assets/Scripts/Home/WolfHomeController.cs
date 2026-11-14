@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WolfController : MonoBehaviour
+public class WolfHomeController : MonoBehaviour
 {
     [SerializeField] private WolfState currentState = WolfState.Idle;
     [SerializeField] private Vector3 spawnPosition = new Vector3(-5f, -2.595012f, 0f);
@@ -88,6 +88,17 @@ public class WolfController : MonoBehaviour
             bloodthirst = Mathf.Min(bloodthirst + 5f, 100f);
         }
     }
+
+    public void ReduceHunger(float amount)
+    {
+        hungry = Mathf.Max(hungry - amount, 0f);
+    }
+
+    public void OnEatButtonClicked()
+    {
+        ChangeState(WolfState.Eat);
+    }
+
 
     private void FixedUpdate()
     {

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class BaseWolfState
 {
-    protected WolfController wolf;
+    protected WolfHomeController wolf;
 
-    protected BaseWolfState(WolfController wolf)
+    protected BaseWolfState(WolfHomeController wolf)
     {
         this.wolf = wolf;
     }

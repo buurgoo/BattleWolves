@@ -8,6 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Home/Hall.unity
+    guid: 4a6ade684f722414f9b2d5f9156bde33
+  - enabled: 1
+    path: Assets/Scenes/Home/Kitchen.unity
+    guid: d147dcd1f1793430c83260daa66cabaa
+  - enabled: 1
+    path: Assets/Scenes/Home/Bedroom.unity
+    guid: 5c7b39e58b93e434c97cb1209df211ae
+  - enabled: 1
+    path: Assets/Scenes/Home/Bath.unity
+    guid: b6540b05ff0034c91b7578c6a1882ecf
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 85509188fae42fe4f9142923dc437a42
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

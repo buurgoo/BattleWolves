@@ -43,6 +43,8 @@ public class WolfHomeController : MonoBehaviour
 
     public void ChangeState(WolfState newState)
     {
+        if (currentState == newState && activeState != null) return;
+
         activeState?.EndState();
         currentState = newState;
 
@@ -50,9 +52,9 @@ public class WolfHomeController : MonoBehaviour
         {
             WolfState.Idle     => new WolfIdleState(this),
             WolfState.Walk     => new WolfWalkState(this),
-            // WolfState.Eat      => new WolfEatState(this),
-            // WolfState.Sleep    => new WolfSleepState(this),
-            // WolfState.BathTime => new WolfBathTimeState(this),
+            WolfState.Eat      => new WolfEatState(this),
+            WolfState.Sleep    => new WolfSleepState(this),
+            WolfState.BathTime => new WolfBathTimeState(this),
             _                  => new WolfIdleState(this)
         };
 
@@ -63,14 +65,24 @@ public class WolfHomeController : MonoBehaviour
     {
         float move = moveAction.ReadValue<float>();
 
-        if (Mathf.Abs(move) > 0.01f)
+        if (currentState != WolfState.Eat &&
+            currentState != WolfState.Sleep &&
+            currentState != WolfState.BathTime)
         {
-            faceDirection = move < 0 ? -1 : 1;
-            ChangeState(WolfState.Walk);
+            if (Mathf.Abs(move) > 0.01f)
+            {
+                faceDirection = move < 0 ? -1 : 1;
+                ChangeState(WolfState.Walk);
+            }
+            else ChangeState(WolfState.Idle);
         }
-        else ChangeState(WolfState.Idle);
 
         activeState?.UpdateState();
+        if (currentState == WolfState.Eat ||
+            currentState == WolfState.Sleep ||
+            currentState == WolfState.BathTime) 
+                ChangeState(WolfState.Idle);
+        
         UpdateStats();
     }
 
@@ -94,11 +106,33 @@ public class WolfHomeController : MonoBehaviour
         hungry = Mathf.Max(hungry - amount, 0f);
     }
 
+        public void ReduceSleepy(float amount)
+    {
+        sleepy = Mathf.Max(sleepy - amount, 0f);
+    }
+
+    public void ReduceStinky(float amount)
+    {
+        stinky = Mathf.Max(stinky - amount, 0f);
+    }
+
     public void OnEatButtonClicked()
     {
+        Debug.Log("Home: Eat button clicked");
         ChangeState(WolfState.Eat);
     }
 
+    public void OnSleepButtonClicked()
+    {
+        Debug.Log("Home: Sleep button clicked");
+        ChangeState(WolfState.Sleep);
+    }
+
+    public void OnBathButtonClicked()
+    {
+        Debug.Log("Home: Bath button clicked");
+        ChangeState(WolfState.BathTime);
+    }
 
     private void FixedUpdate()
     {

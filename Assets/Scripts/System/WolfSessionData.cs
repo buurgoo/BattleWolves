@@ -4,7 +4,7 @@ namespace System
 {
     public static class WolfSessionData
     {
-        public static int level = 7;
+        public static int level = 10;
 
         public static Type skill1 = typeof(Bite);
         public static Type skill2 = typeof(Scratch);

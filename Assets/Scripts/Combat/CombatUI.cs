@@ -23,7 +23,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOver;
 
     public UnityEvent<int, int, bool> displayHP;
-    public UnityEvent<int, bool> displayDamage;
+    public UnityEvent<int, bool, bool> displayDamage;
     public UnityEvent<LingeringSkill[], bool> displayEffects;
     public UnityEvent<bool> displayGameOver;
 
@@ -65,13 +65,13 @@ public class CombatUI : MonoBehaviour
         playerHP.text = $"HP: {currentPlayerHP}/{maxPlayerHP}";
     }
 
-    private void DisplayDamage(int damage, bool player)
+    private void DisplayDamage(int damage, bool player, bool negative)
     {
         TextMeshProUGUI playerDamage;
         if (!player) { playerDamage = player1Damage; }
         else { playerDamage = player2Damage; }
 
-        playerDamage.text += $" -{damage}";
+        playerDamage.text += negative ? $" -{damage}" : $" +{damage}";
     }
 
     private void DisplayEffects(LingeringSkill[] skills, bool player)

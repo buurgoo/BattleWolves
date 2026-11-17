@@ -9,7 +9,7 @@ public class LickWounds : Skill
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
-        caster.Heal((float)(heal / 100));
+        caster.Heal((float)heal / (float)100);
         caster.lingeringSkills = new LingeringSkill[3];
     }
 }

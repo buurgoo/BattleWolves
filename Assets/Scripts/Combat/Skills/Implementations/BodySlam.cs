@@ -9,6 +9,6 @@ public class BodySlam : Skill
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
-        oponent.TakeSkillDamage(caster.CalculateMaxHPSkillDamage((float)damage / 100));
+        oponent.TakeSkillDamage(caster.CalculateMaxHPSkillDamage((float)damage / (float)100));
     }
 }

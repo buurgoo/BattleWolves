@@ -12,10 +12,10 @@ public class FinishOff : Skill
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
         int extraTicks = (int)(100 - oponent.RemainingHP() * 100) / HPThreshold;
-        oponent.TakeSkillDamage(caster.CalculateDefSkillDamage((float)baseDamage / 100));
+        oponent.TakeSkillDamage(caster.CalculateDefSkillDamage((float)baseDamage / (float)100));
         for (int i = 0; i < extraTicks; i++) 
         {
-            oponent.TakeSkillDamage(caster.CalculateDefSkillDamage((float)bonusDamage / 100));
+            oponent.TakeSkillDamage(caster.CalculateDefSkillDamage((float)bonusDamage / (float)100));
         }
     }
 }

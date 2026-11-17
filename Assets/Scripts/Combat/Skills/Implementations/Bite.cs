@@ -11,13 +11,13 @@ public class Bite : Skill
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
-        if (caster.RemainingHP() < ((float)HPThreshold / 100))
+        if (caster.RemainingHP() < ((float)HPThreshold / (float)100))
         {
-            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)lowHPMotionValue / 100));
+            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)lowHPMotionValue / (float)100));
         }
         else
         {
-            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)highHPMotionValue / 100));
+            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)highHPMotionValue / (float)100));
         }
     }
 }

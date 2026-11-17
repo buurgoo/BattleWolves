@@ -129,16 +129,20 @@ public abstract class BattleWolf : MonoBehaviour
         return (float)_currentHP / (float)_maxHP;
     }
 
-    public void Heal(float heal)
+    public virtual int Heal(float heal)
     {
-        _currentHP += (int)(heal * _maxHP);
-        if (_currentHP > _maxHP) { _currentHP = _maxHP; }
+        int healValue = (int)(heal * _maxHP);
+        _currentHP += healValue;
+        //Debug.Log($"healed for {heal*100}%");
+        _currentHP = Mathf.Min(_currentHP, _maxHP);
+        return healValue;
     }
 
-    public void Heal(int heal)
+    public virtual void Heal(int heal)
     {
         _currentHP += heal;
-        if (_currentHP > _maxHP) { _currentHP = _maxHP; }
+        //Debug.Log($"healed for {heal}");
+        _currentHP = Mathf.Min(_currentHP, _maxHP);
     }
 
     public int CalculateAtkSkillDamage(float motionValue)
@@ -161,12 +165,12 @@ public abstract class BattleWolf : MonoBehaviour
         float defMultiplier = _baselineDef * (1 + _bonusDef);
         int damage = (int)(attackDamage * (1 - defMultiplier / (defMultiplier + 250)));
         _currentHP -= damage;
-        Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
+        //Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
 
         if (_currentHP <= 0)
         {
             _currentHP = 0;
-            Debug.Log("Wolf dead");
+            //Debug.Log("Wolf dead");
         }
 
         return damage;
@@ -175,12 +179,12 @@ public abstract class BattleWolf : MonoBehaviour
     public virtual void TakeDirectDamage(int attackDamage)
     {
         _currentHP -= attackDamage;
-        Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
+        //Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
 
         if (_currentHP < 0)
         {
             _currentHP = 0;
-            Debug.Log("Wolf dead");
+            //Debug.Log("Wolf dead");
         }
     }
 

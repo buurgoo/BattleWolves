@@ -15,7 +15,7 @@ public class PrepareStrike : LingeringSkill
 
     public override void CastEffect(BattleWolf caster, BattleWolf oponent)
     {
-        caster.ModifyDef((float)defBonus / 100);
+        caster.ModifyDef((float)defBonus / (float)100);
         castHP = caster.CurrentHP();
     }
 
@@ -28,6 +28,6 @@ public class PrepareStrike : LingeringSkill
         {
             wolf.selectedSkill = new Strike();
         }
-        wolf.ModifyDef((float)-defBonus / 100);
+        wolf.ModifyDef((float)-defBonus / (float)100);
     }
 }

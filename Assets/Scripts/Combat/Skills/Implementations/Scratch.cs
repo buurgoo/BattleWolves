@@ -13,7 +13,7 @@ public class Scratch : LingeringSkill
 
     public override void CastEffect(BattleWolf caster, BattleWolf oponent)
     {
-        oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)damage / 100));
+        oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)damage / (float)100));
     }
 
     public override void TickEffect(BattleWolf wolf)

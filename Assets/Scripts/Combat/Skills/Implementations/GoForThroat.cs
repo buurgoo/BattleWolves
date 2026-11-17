@@ -12,11 +12,11 @@ public class GoForThroat : Skill
     {
         if (Random.Range(0f, 1f) > 0.1f)
         {
-            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)damage / 100));
+            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)damage / (float)100));
 
             if ((caster.Def() * 2 < caster.Atk()) && (Random.Range(0f, 1f) > 0.9f))
             {
-                oponent.ModifyDef((float)-defDebuff / 100);
+                oponent.ModifyDef((float)-defDebuff / (float)100);
             }
         }
     }

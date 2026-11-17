@@ -10,7 +10,7 @@ public class Rage : Skill
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
-        caster.ModifyAtk((float)atkBonus / 100);
-        caster.ModifyDef((float)-defDebuff / 100);
+        caster.ModifyAtk((float)atkBonus / (float)100);
+        caster.ModifyDef((float)-defDebuff / (float)100);
     }
 }

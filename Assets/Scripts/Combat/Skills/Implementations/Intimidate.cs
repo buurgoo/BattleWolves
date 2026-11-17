@@ -10,7 +10,7 @@ public class Intimidate : Skill
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
-        oponent.ModifyAtk((float)-atkDebuff / 100);
-        oponent.ModifyDef((float)defDonus / 100);
+        oponent.ModifyAtk((float)-atkDebuff / (float)100);
+        oponent.ModifyDef((float)defDonus / (float)100);
     }
 }

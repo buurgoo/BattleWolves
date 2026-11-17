@@ -17,8 +17,8 @@ public class BattleManager : MonoBehaviour
 
     public void StartCombat() 
     {
-        ui.displayHP.Invoke(player1.GetCurrentHP(), player1.GetMaxHP(), false);
-        ui.displayHP.Invoke(player2.GetCurrentHP(), player2.GetMaxHP(), true);
+        ui.displayHP.Invoke(player1.CurrentHP(), player1.MaxHP(), false);
+        ui.displayHP.Invoke(player2.CurrentHP(), player2.MaxHP(), true);
 
         TurnStart(); 
     }

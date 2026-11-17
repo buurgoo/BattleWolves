@@ -83,7 +83,7 @@ public class CombatUI : MonoBehaviour
         string text = "";
         foreach (LingeringSkill skill in skills)
         {
-            if (skill != null)
+            if (skill != null && skill.isActive)
             {
                 text += SkillDescriptions.skillDescriptions[skill.skillId].effect_name;
                 text += $" {skill.remainingTicks}/{skill.totalTicks} | ";

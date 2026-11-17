@@ -21,13 +21,15 @@ public abstract class LingeringSkill : Skill
 
     public void Tick(BattleWolf wolf) 
     {        
-        TickEffect(wolf);
-        remainingTicks -= 1;
-        
         if (remainingTicks == 0)
         {
             isActive = false;
             ExpireEffect(wolf);
+        }
+        else
+        {
+            TickEffect(wolf);
+            remainingTicks -= 1;
         }
     }
 

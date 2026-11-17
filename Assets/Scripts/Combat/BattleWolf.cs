@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class BattleWolf : MonoBehaviour
@@ -21,12 +22,9 @@ public abstract class BattleWolf : MonoBehaviour
 
     private int _maxHP;
     private int _currentHP;
-    
-    
-    //NEW CHANGES BEWARE
-    protected float _bloodthirstBonus = 0f;
 
     public abstract PlayerStats playerStats { get; }
+    public SkillType type;
 
     public Skill selectedSkill = null;
 
@@ -41,8 +39,45 @@ public abstract class BattleWolf : MonoBehaviour
 
     public abstract void InitBaseStats();
 
+    protected virtual void SetType()
+    {
+        System.Type[] skills = { playerStats.skill1, playerStats.skill2, playerStats.skill3, playerStats.skill4 };
+        for (int i = 0; i < 4; i++)
+        {
+            Skill skill1 = (Skill)Activator.CreateInstance(skills[i]);
+            for (int j = i + 1; j < 4; j++)
+            {
+                Skill skill2 = (Skill)Activator.CreateInstance(skills[j]);
+                if (skill1.skillType == skill2.skillType)
+                {
+                    type = skill1.skillType;
+                    return;
+                }
+            }
+        }
+    }
+
     private void InitBaselineStats()
     {
+        SetType();
+
+        switch (type)
+        {
+            case SkillType.Aggressive: 
+                _obtainedAtk += 0.5f; 
+                _obtainedHP -= 0.5f;
+                break;
+            case SkillType.Intimidating:
+                _obtainedHP += 0.5f;
+                _obtainedDef -= 0.5f;
+                break;
+            case SkillType.Conniving:
+                _obtainedDef += 0.5f;
+                _obtainedAtk -= 0.5f;
+                break;
+            default: break;
+        }
+
         _baselineAtk = (int)(_baseAtk * (1 + _obtainedAtk));
         _baselineHP = (int)(_baseHP * (1 + _obtainedHP));
         _baselineDef = (int)(_baseDef * (1 + _obtainedDef));
@@ -52,6 +87,16 @@ public abstract class BattleWolf : MonoBehaviour
     }
 
     public virtual void OnAwake() { }
+
+    public int Atk()
+    {
+        return (int)(_baselineAtk * (1 + _bonusAtk));
+    }
+
+    public int Def()
+    {
+        return (int)(_baselineDef * (1 + _bonusDef));
+    }
 
     public void ModifyAtk(float atk)
     {
@@ -75,24 +120,46 @@ public abstract class BattleWolf : MonoBehaviour
         _currentHP = Mathf.Min(_currentHP, _maxHP);
     }
 
-    public int GetCurrentHP() { return _currentHP; }
+    public int CurrentHP() { return _currentHP; }
 
-    public int GetMaxHP() { return _maxHP; }
+    public int MaxHP() { return _maxHP; }
 
-    public float GetRemainingHP()
+    public float RemainingHP()
     {
         return (float)_currentHP / (float)_maxHP;
     }
 
-    public int CalculateSkillDamage(float motionValue)
+    public void Heal(float heal)
     {
-        return (int)(_baselineAtk * (1 + _bonusAtk) * (1 + _bloodthirstBonus) * motionValue);
+        _currentHP += (int)(heal * _maxHP);
+        if (_currentHP > _maxHP) { _currentHP = _maxHP; }
+    }
+
+    public void Heal(int heal)
+    {
+        _currentHP += heal;
+        if (_currentHP > _maxHP) { _currentHP = _maxHP; }
+    }
+
+    public int CalculateAtkSkillDamage(float motionValue)
+    {
+        return (int)(_baselineAtk * (1 + _bonusAtk) * motionValue);
+    }
+
+    public int CalculateDefSkillDamage(float motionValue)
+    {
+        return (int)(_baselineDef * (1 + _bonusDef) * motionValue);
+    }
+
+    public int CalculateMaxHPSkillDamage(float motionValue)
+    {
+        return (int)(_maxHP * motionValue);
     }
 
     public virtual int TakeSkillDamage(int attackDamage)
     {
         float defMultiplier = _baselineDef * (1 + _bonusDef);
-        int damage = (int)(attackDamage * (1 - defMultiplier / (defMultiplier + 1000)));
+        int damage = (int)(attackDamage * (1 - defMultiplier / (defMultiplier + 250)));
         _currentHP -= damage;
         Debug.Log($"Wolf HP: {_currentHP}/{_maxHP}");
 

@@ -5,16 +5,19 @@ public class Bite : Skill
     public override int skillId { get { return 2; } }
     public override SkillType skillType { get { return SkillType.Aggressive; } }
 
+    public static int HPThreshold = 50;
+    public static int lowHPMotionValue = 150;
+    public static int highHPMotionValue = 100;
+
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
-        //Debug.Log($"Caster hp: {caster.GetRemainingHP()}");
-        if (caster.GetRemainingHP() < 0.5f)
+        if (caster.RemainingHP() < ((float)HPThreshold / 100))
         {
-            oponent.TakeSkillDamage(caster.CalculateSkillDamage(1.5f));
+            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)lowHPMotionValue / 100));
         }
         else
         {
-            oponent.TakeSkillDamage(caster.CalculateSkillDamage(1f));
+            oponent.TakeSkillDamage(caster.CalculateAtkSkillDamage((float)highHPMotionValue / 100));
         }
     }
 }

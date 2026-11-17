@@ -9,20 +9,20 @@ public static class SkillDescriptions
             2, 
             new SkillDescription(
             "Bite",
-            "Deal 100% of Atk as damage. If HP < 50%, deal 150% of Atk instead."
+            $"Deal {Bite.highHPMotionValue}% of Atk as damage. If HP < {Bite.HPThreshold}%, deal {Bite.highHPMotionValue}% of Atk instead."
             ) },
         { 
             3, 
             new SkillDescription(
             "Rage",
-            "Increase Atk by 50% and decrease Def by 100% for the rest of the fight."
+            $"Increase Atk by {Rage.atkBonus}% and decrease Def by {Rage.defDebuff}% for the rest of the fight."
             ) },
         { 
             8, 
             new SkillDescription(
             "Go for the Throat",
             "Sick",
-            "Deal 250% of Atk as damage. If Def < 10%, has a 10% chance to inflict sickness. Has a 10% chance to miss."
+            $"Deal {GoForThroat.damage}% of Atk as damage. Has a 10% chance to miss. If Def < 50% of Atk, has a 10% chance to decrease oponent Def by {GoForThroat.defDebuff}% for the rest of the fight."
             ) },
 
         // Intimidating skills
@@ -30,19 +30,19 @@ public static class SkillDescriptions
             4, 
             new SkillDescription(
             "Body Slam",
-            "Deal 50% of current HP as damage."
+            $"Deal {BodySlam.damage}% of current HP as damage."
             ) },
         { 
             5, 
             new SkillDescription(
             "Lick your Wounds",
-            "Restore 10% of Max HP. Remove all active effects."
+            $"Restore {LickWounds.heal}% of Max HP. Remove all active effects."
             ) },
         { 
             7, 
             new SkillDescription(
             "Intimidate",
-            "Decrease oponent Atk by 25%. Increase oponent Def by 10%."
+            $"Decrease oponent Atk by {Intimidate.atkDebuff}%. Increase oponent Def by {Intimidate.defDonus}%."
             ) },
 
         // Conniving skills
@@ -57,26 +57,26 @@ public static class SkillDescriptions
             new SkillDescription(
             "Scratch",
             "Bleed",
-            "Deal 25% of Atk as damage. Inflict bleed for the next 3 turns. Bleed: Deal 25 direct damage."
+            $"Deal {Scratch.damage}% of Atk as damage. Inflict bleed for the next 3 turns. Bleed: Deal {Scratch.bleedDamage} direct damage."
             ) },
         { 
             6, 
             new SkillDescription(
             "Prepare to Strike Back",
             "Defensive Stance",
-            "Increase Def by 70% for this turn. If damage taken this turn, start your next turn with Strike."
+            $"Increase Def by {PrepareStrike.defBonus}% for this turn. If damage taken this turn, start your next turn with Strike."
             ) },
         { 
             9, 
             new SkillDescription(
-             "Finish off the Wounded",
-            "Deal 20% of Atk as damage. For every 10% of oponent Max HP missing, deal an additional 10%."
+            "Finish off the Wounded",
+            $"Deal {FinishOff.baseDamage}% of Def as damage. For every {FinishOff.HPThreshold}% of oponent Max HP missing, deal an additional {FinishOff.bonusDamage}%."
             ) },
         { 
             10, 
             new SkillDescription(
             "Strike",
-            "Deal 25 direct damage."
+            $"Deal {Strike.damage} direct damage."
             ) }
     };
 }

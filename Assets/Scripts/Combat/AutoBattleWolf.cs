@@ -20,4 +20,9 @@ public class AutoBattleWolf : BattleWolfUI
         _baseDef = LevelScalings.levelScalings[playerStats.level].Def;
         _baseHP = LevelScalings.levelScalings[playerStats.level].HP;
     }
+
+    protected override void SetType()
+    {
+        type = SkillType.Aggressive;
+    }
 }

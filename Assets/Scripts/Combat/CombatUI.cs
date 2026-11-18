@@ -12,6 +12,9 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI player1Damage;
     [SerializeField] private TextMeshProUGUI player2Damage;
 
+    [SerializeField] private TextMeshProUGUI player1Attack;
+    [SerializeField] private TextMeshProUGUI player2Attack;
+
     [SerializeField] private TextMeshProUGUI player1Effects;
     [SerializeField] private TextMeshProUGUI player2Effects;
 
@@ -24,6 +27,7 @@ public class CombatUI : MonoBehaviour
 
     public UnityEvent<int, int, bool> displayHP;
     public UnityEvent<int, bool, bool> displayDamage;
+    public UnityEvent<Skill, bool> displayAttack;
     public UnityEvent<LingeringSkill[], bool> displayEffects;
     public UnityEvent<bool> displayGameOver;
 
@@ -31,6 +35,7 @@ public class CombatUI : MonoBehaviour
     {
         displayHP.AddListener(DisplayHP);
         displayDamage.AddListener(DisplayDamage);
+        displayAttack.AddListener(DisplayAttack);
         displayEffects.AddListener(DisplayEffects);
         displayGameOver.AddListener(DisplayGameOver);
 
@@ -74,6 +79,15 @@ public class CombatUI : MonoBehaviour
         playerDamage.text += negative ? $" -{damage}" : $" +{damage}";
     }
 
+    private void DisplayAttack(Skill skill, bool player)
+    {
+        TextMeshProUGUI playerAttack;
+        if (!player) { playerAttack = player1Attack; }
+        else { playerAttack = player2Attack; }
+
+        playerAttack.text = SkillDescriptions.skillDescriptions[skill.skillId].name;
+    }
+
     private void DisplayEffects(LingeringSkill[] skills, bool player)
     {
         TextMeshProUGUI playerEffects;
@@ -98,6 +112,8 @@ public class CombatUI : MonoBehaviour
         player2HP.gameObject.SetActive(false);
         player1Damage.gameObject.SetActive(false);
         player2Damage.gameObject.SetActive(false);
+        player1Attack.gameObject.SetActive(false);
+        player2Attack.gameObject.SetActive(false);
         player1Effects.gameObject.SetActive(false);
         player2Effects.gameObject.SetActive(false);
 

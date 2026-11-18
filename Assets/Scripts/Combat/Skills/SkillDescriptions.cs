@@ -15,14 +15,13 @@ public static class SkillDescriptions
             3, 
             new SkillDescription(
             "Rage",
-            $"Increase Atk by {Rage.atkBonus}% and decrease Def by {Rage.defDebuff}% for the rest of the fight."
+            $"Lose {Rage.selfDamage}% of Max HP. Increase Atk by {Rage.atkBonus}% and decrease Def by {Rage.defDebuff}% for the rest of the fight."
             ) },
         { 
             8, 
             new SkillDescription(
             "Go for the Throat",
-            "Sick",
-            $"Deal {GoForThroat.damage}% of Atk as damage. Has a 10% chance to miss. If Def < 50% of Atk, has a 10% chance to decrease oponent Def by {GoForThroat.defDebuff}% for the rest of the fight."
+            $"Deal {GoForThroat.damage}% of Atk as damage. Has a 10% chance to miss. If Def < 50% of Atk, has a 10% chance to decrease oponent Max HP by {GoForThroat.HPDebuff}% for the rest of the fight."
             ) },
 
         // Intimidating skills

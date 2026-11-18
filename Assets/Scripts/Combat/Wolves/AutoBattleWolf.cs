@@ -1,4 +1,4 @@
-public class AutoBattleWolf : BattleWolfUI
+public abstract class AutoBattleWolf : BattleWolfUI
 {
     public override PlayerStats playerStats
     {
@@ -8,21 +8,10 @@ public class AutoBattleWolf : BattleWolfUI
         }
     }
 
-    public override void SelectSkill()
-    {
-        selectedSkill = new Bite();
-        battleManager.PlayerSelectedSkill(this);
-    }
-
     public override void InitBaseStats()
     {
         _baseAtk = LevelScalings.levelScalings[playerStats.level].Atk;
         _baseDef = LevelScalings.levelScalings[playerStats.level].Def;
         _baseHP = LevelScalings.levelScalings[playerStats.level].HP;
-    }
-
-    protected override void SetType()
-    {
-        type = SkillType.Aggressive;
     }
 }

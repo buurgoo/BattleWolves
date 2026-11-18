@@ -67,6 +67,7 @@ public class BattleManager : MonoBehaviour
         if (player.selectedSkill != null) 
         { 
             player.selectedSkill.Cast(player, GetOponent());
+            ui.displayAttack.Invoke(player.selectedSkill, _currentTurn);
         }
         player.SelectSkill();
     }
@@ -83,6 +84,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleWolf player = GetPlayer();
         player.selectedSkill.Cast(player, GetOponent());
+        ui.displayAttack.Invoke(player.selectedSkill, _currentTurn);
         Debug.Log($"'{_currentTurn}' player finished turn.");
 
         player.selectedSkill = null;

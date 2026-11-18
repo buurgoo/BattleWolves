@@ -6,7 +6,7 @@ public class GoForThroat : Skill
     public override SkillType skillType { get { return SkillType.Aggressive; } }
 
     public static int damage = 250;
-    public static int defDebuff = 10;
+    public static int HPDebuff = 10;
 
     public override void Cast(BattleWolf caster, BattleWolf oponent)
     {
@@ -16,7 +16,7 @@ public class GoForThroat : Skill
 
             if ((caster.Def() * 2 < caster.Atk()) && (Random.Range(0f, 1f) > 0.9f))
             {
-                oponent.ModifyDef((float)-defDebuff / (float)100);
+                oponent.ModifyHP((float)-HPDebuff / (float)100, false);
             }
         }
     }

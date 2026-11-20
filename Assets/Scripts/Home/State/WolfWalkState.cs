@@ -8,7 +8,7 @@ public class WolfWalkState : BaseWolfState
 
     public override void EnterState()
     {
-        // TODO: added walk animation
+         wolf.animator.SetBool("isWalking", true);
     }
 
     public override void FixedUpdateState()
@@ -20,5 +20,6 @@ public class WolfWalkState : BaseWolfState
     public override void EndState()
     {
         wolf.rb.linearVelocity = Vector2.zero;
+        wolf.animator.SetBool("isWalking", false);
     }
 }

@@ -10,6 +10,7 @@ public class WolfHomeController : MonoBehaviour
 
     public InputAction moveAction;
     public Rigidbody2D rb { get; private set; }
+    public Animator animator { get; private set; }
 
     private SpriteRenderer sprite;
     private int faceDirection = 1;
@@ -32,6 +33,7 @@ public class WolfHomeController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         
         sleepy = WolfSessionData.sleepy;
@@ -84,11 +86,6 @@ public class WolfHomeController : MonoBehaviour
         }
 
         activeState?.UpdateState();
-        if (currentState == WolfState.Eat ||
-            currentState == WolfState.Sleep ||
-            currentState == WolfState.BathTime) 
-                ChangeState(WolfState.Idle);
-        
         UpdateStats();
     }
 
@@ -100,8 +97,8 @@ public class WolfHomeController : MonoBehaviour
         {
             statsTimer -= 10f;
 
-            sleepy = Mathf.Min(sleepy + 5f, 100f);
-            hungry = Mathf.Min(hungry + 5f, 100f);
+            sleepy = Mathf.Min(sleepy + 1f, 100f);
+            hungry = Mathf.Min(hungry + 3f, 100f);
             stinky = Mathf.Min(stinky + 5f, 100f);
             bloodthirst = Mathf.Min(bloodthirst + 5f, 100f);
             
@@ -136,13 +133,20 @@ public class WolfHomeController : MonoBehaviour
     public void OnSleepButtonClicked()
     {
         Debug.Log("Home: Sleep button clicked");
-        ChangeState(WolfState.Sleep);
+        if (currentState == WolfState.Sleep) ChangeState(WolfState.Idle);
+        else ChangeState(WolfState.Sleep);
     }
 
     public void OnBathButtonClicked()
     {
         Debug.Log("Home: Bath button clicked");
         ChangeState(WolfState.BathTime);
+    }
+
+    public void OnActionAnimationFinished()
+    {
+        if (currentState == WolfState.Eat || currentState == WolfState.BathTime)
+            ChangeState(WolfState.Idle);
     }
 
     private void FixedUpdate()

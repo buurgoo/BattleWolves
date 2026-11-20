@@ -6,6 +6,9 @@ public class WolfBathTimeState : BaseWolfState
 
     public override void EnterState()
     {
+        wolf.animator.SetBool("isWalking", false);
+        wolf.animator.SetTrigger("isBathing");
+        
         wolf.ReduceStinky(50f);
         Debug.Log("Home: Wolf takes a bath");
     }

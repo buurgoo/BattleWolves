@@ -5,6 +5,7 @@ namespace System
     public static class WolfSessionData
     {
         public static int level = 10;
+        public static int Money = 10000; // Temp value for debug
 
         public static Type skill1 = typeof(Bite);
         public static Type skill2 = typeof(Scratch);

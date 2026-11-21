@@ -25,6 +25,8 @@ public class WolfHallStatsUI : MonoBehaviour
     [SerializeField] private Image stinkyFill;
     [SerializeField] private TMP_Text stinkyText;
 
+    [SerializeField] private TMP_Text moneyText;
+
     private void Update()
     {
         levelText.text = $"LVL. {wolf.Level}";
@@ -53,5 +55,7 @@ public class WolfHallStatsUI : MonoBehaviour
         float stinky = wolf.Stinky;
         stinkyFill.fillAmount = Mathf.Clamp01(stinky / 100f);
         stinkyText.text = $"{stinky:0}%";
+
+        moneyText.text = System.WolfSessionData.Money.ToString();
     }
 } 

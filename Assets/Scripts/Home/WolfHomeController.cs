@@ -15,6 +15,10 @@ public class WolfHomeController : MonoBehaviour
     private SpriteRenderer sprite;
     private int faceDirection = 1;
 
+    [SerializeField] private int level = 1;
+    [SerializeField] private int currentXP = 0;
+    [SerializeField] private int requiredXP = 340125;
+
     [Header("Wolf Stats")]
     [SerializeField, Range(0, 100)] private float hp = 100f;
     [SerializeField, Range(0, 100)] private float sleepy = 0f;
@@ -23,6 +27,10 @@ public class WolfHomeController : MonoBehaviour
     [SerializeField, Range(0, 100)] private float bloodthirst = 0f;
 
     private float statsTimer = 0f;
+
+    public int Level => level;
+    public int CurrentXP => currentXP;
+    public int RequiredXP => requiredXP;
 
     public float HP => hp;
     public float Sleepy => sleepy;
@@ -145,7 +153,7 @@ public class WolfHomeController : MonoBehaviour
 
     public void OnActionAnimationFinished()
     {
-        if (currentState == WolfState.Eat || currentState == WolfState.BathTime)
+        if (currentState == WolfState.Eat)
             ChangeState(WolfState.Idle);
     }
 

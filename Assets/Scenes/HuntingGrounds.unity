@@ -1358,7 +1358,7 @@ GameObject:
   - component: {fileID: 540718874}
   - component: {fileID: 540718873}
   m_Layer: 5
-  m_Name: Mony
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

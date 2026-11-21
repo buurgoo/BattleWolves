@@ -6,6 +6,10 @@ public class WolfHallStatsUI : MonoBehaviour
 {
     [SerializeField] private WolfHomeController wolf;
 
+    [SerializeField] private TMP_Text levelText;
+    [SerializeField] private Image xpFill;
+    [SerializeField] private TMP_Text xpText;
+
     [SerializeField] private Image hpFill;
     [SerializeField] private TMP_Text hpText;
 
@@ -23,6 +27,13 @@ public class WolfHallStatsUI : MonoBehaviour
 
     private void Update()
     {
+        levelText.text = $"LVL. {wolf.Level}";
+
+        float currentXP = wolf.CurrentXP;
+        float requiredXP = wolf.RequiredXP;
+        xpFill.fillAmount = requiredXP > 0 ? Mathf.Clamp01(currentXP / requiredXP) : 0f;
+        xpText.text = $"{currentXP:0}/{requiredXP:0}";
+
         float hp = wolf.HP;
         hpFill.fillAmount = Mathf.Clamp01(hp / 100f);
         hpText.text = $"{hp:0}%";

@@ -6,6 +6,9 @@ namespace System
     {
         public static int level = 10;
         public static int Money = 10000; // Temp value for debug
+        
+        public static float currentXP = 0f;
+        public static float requiredXP = 100f;
 
         public static Type skill1 = typeof(Bite);
         public static Type skill2 = typeof(Scratch);
@@ -23,6 +26,19 @@ namespace System
             hungry = Mathf.Clamp(currentHungry, 0f, 100f);
             stinky = Mathf.Clamp(currentStinky, 0f, 100f);
             bloodthirst = Mathf.Clamp(currentBloodthirst, 0f, 100f);
+        }
+        
+        public static void AddRewards(float xpGain, int moneyGain)
+        {
+            currentXP += xpGain;
+            Money += moneyGain;
+
+            while (currentXP >= requiredXP)
+            {
+                currentXP -= requiredXP;
+                level++;
+                requiredXP *= 1.2f;
+            }
         }
 
         public static PlayerStats BuildBattleStats()

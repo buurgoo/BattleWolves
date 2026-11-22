@@ -22,7 +22,7 @@ namespace System
         public static float hungry = 0f;
         public static float stinky = 0f;
         public static float bloodthirst = 0f;
-        public static float currenthp = 0.5f;
+        public static float currenthp = 0f;
 
         public static void SaveNeeds(float currentSleepy, float currentHungry, float currentStinky, float currentBloodthirst)
         {

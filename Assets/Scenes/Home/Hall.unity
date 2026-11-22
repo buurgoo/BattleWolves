@@ -145,8 +145,8 @@ Transform:
   m_GameObject: {fileID: 7096076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9626, y: 1.9716, z: 1}
+  m_LocalPosition: {x: 0.76, y: -0.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1687924478}
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5136751045545959129, guid: a499ca545c5844bb3880fb49657b2c34, type: 3}
+  m_Sprite: {fileID: -6183368386349921058, guid: 538f6cc8d8274b74a8f1cd0e4b0bd3d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4343,7 +4343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687924478}
   m_Layer: 0
-  m_Name: interier
+  m_Name: interior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4556,7 +4556,7 @@ GameObject:
   - component: {fileID: 1748796203}
   - component: {fileID: 1748796202}
   m_Layer: 0
-  m_Name: flor
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

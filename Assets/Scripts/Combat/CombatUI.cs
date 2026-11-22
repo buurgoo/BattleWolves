@@ -12,6 +12,9 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI player1Damage;
     [SerializeField] private TextMeshProUGUI player2Damage;
 
+    [SerializeField] private TextMeshProUGUI player1Attack;
+    [SerializeField] private TextMeshProUGUI player2Attack;
+
     [SerializeField] private TextMeshProUGUI player1Effects;
     [SerializeField] private TextMeshProUGUI player2Effects;
 
@@ -23,7 +26,8 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOver;
 
     public UnityEvent<int, int, bool> displayHP;
-    public UnityEvent<int, bool> displayDamage;
+    public UnityEvent<int, bool, bool> displayDamage;
+    public UnityEvent<Skill, bool> displayAttack;
     public UnityEvent<LingeringSkill[], bool> displayEffects;
     public UnityEvent<bool> displayGameOver;
 
@@ -31,6 +35,7 @@ public class CombatUI : MonoBehaviour
     {
         displayHP.AddListener(DisplayHP);
         displayDamage.AddListener(DisplayDamage);
+        displayAttack.AddListener(DisplayAttack);
         displayEffects.AddListener(DisplayEffects);
         displayGameOver.AddListener(DisplayGameOver);
 
@@ -65,13 +70,22 @@ public class CombatUI : MonoBehaviour
         playerHP.text = $"HP: {currentPlayerHP}/{maxPlayerHP}";
     }
 
-    private void DisplayDamage(int damage, bool player)
+    private void DisplayDamage(int damage, bool player, bool negative)
     {
         TextMeshProUGUI playerDamage;
         if (!player) { playerDamage = player1Damage; }
         else { playerDamage = player2Damage; }
 
-        playerDamage.text += $" -{damage}";
+        playerDamage.text += negative ? $" -{damage}" : $" +{damage}";
+    }
+
+    private void DisplayAttack(Skill skill, bool player)
+    {
+        TextMeshProUGUI playerAttack;
+        if (!player) { playerAttack = player1Attack; }
+        else { playerAttack = player2Attack; }
+
+        playerAttack.text = SkillDescriptions.skillDescriptions[skill.skillId].name;
     }
 
     private void DisplayEffects(LingeringSkill[] skills, bool player)
@@ -83,7 +97,7 @@ public class CombatUI : MonoBehaviour
         string text = "";
         foreach (LingeringSkill skill in skills)
         {
-            if (skill != null)
+            if (skill != null && skill.isActive)
             {
                 text += SkillDescriptions.skillDescriptions[skill.skillId].effect_name;
                 text += $" {skill.remainingTicks}/{skill.totalTicks} | ";
@@ -98,6 +112,8 @@ public class CombatUI : MonoBehaviour
         player2HP.gameObject.SetActive(false);
         player1Damage.gameObject.SetActive(false);
         player2Damage.gameObject.SetActive(false);
+        player1Attack.gameObject.SetActive(false);
+        player2Attack.gameObject.SetActive(false);
         player1Effects.gameObject.SetActive(false);
         player2Effects.gameObject.SetActive(false);
 

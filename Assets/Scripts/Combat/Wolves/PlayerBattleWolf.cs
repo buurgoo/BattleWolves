@@ -16,15 +16,15 @@ public class PlayerBattleWolf : BattleWolfUI
     private System.Type skillType3 = typeof(Wait);
     private System.Type skillType4 = typeof(Wait);
 
-    public override PlayerStats playerStats 
-    { 
+    public override PlayerStats playerStats
+    {
         get { return WolfSessionData.BuildBattleStats(); }
     }
 
     public override void InitBaseStats()
     {
         PlayerStats stats = playerStats;
-        
+
         skillType1 = playerStats.skill1;
         skillType2 = playerStats.skill2;
         skillType3 = playerStats.skill3;
@@ -36,10 +36,11 @@ public class PlayerBattleWolf : BattleWolfUI
         _baseDef = LevelScalings.levelScalings[playerStats.level].Def;
         _baseHP = LevelScalings.levelScalings[playerStats.level].HP;
 
-        _obtainedAtk = (stats.sleep < 0.5f) ? -0.4f : 0f;
-        _obtainedHP = (stats.hunger > 0.5f) ? -0.4f : 0f;
-        _obtainedDef = (stats.cleanliness < 0.5f) ? -0.4f : 0f;
-        _bloodthirstBonus = (stats.bloodthirst > 0.5f) ? 0.5f : 0f;
+        if (playerStats.sleep < 0.5f) { _obtainedAtk -= 0.3f; _obtainedDef -= 0.3f; }
+        if (playerStats.hunger > 0.75f) { _obtainedAtk -= 0.5f; _obtainedHP -= 0.1f; }
+        else if (playerStats.hunger > 0.5f) { _obtainedAtk += 0.1f; _obtainedHP -= 0.1f; }
+        if (playerStats.cleanliness < 0.5f) { _obtainedDef += 0.2f; _obtainedHP -= 0.4f; }
+        if (playerStats.bloodthirst > 0.5f) { _obtainedAtk += 0.5f; _obtainedDef -= 0.5f; }
     }
 
     public void SelectSkill1()

@@ -8,8 +8,8 @@ namespace System
 
         public static Type skill1 = typeof(Bite);
         public static Type skill2 = typeof(Scratch);
-        public static Type skill3 = typeof(Wait);
-        public static Type skill4 = typeof(Wait);
+        public static Type skill3 = typeof(LickWounds);
+        public static Type skill4 = typeof(BodySlam);
 
         public static float sleepy = 0f;
         public static float hungry = 0f;

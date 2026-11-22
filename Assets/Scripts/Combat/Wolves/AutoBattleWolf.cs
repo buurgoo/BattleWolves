@@ -1,4 +1,4 @@
-public class AutoBattleWolf : BattleWolfUI
+public abstract class AutoBattleWolf : BattleWolfUI
 {
     public override PlayerStats playerStats
     {
@@ -6,12 +6,6 @@ public class AutoBattleWolf : BattleWolfUI
         {
             return new PlayerStats(10);
         }
-    }
-
-    public override void SelectSkill()
-    {
-        selectedSkill = new Bite();
-        battleManager.PlayerSelectedSkill(this);
     }
 
     public override void InitBaseStats()

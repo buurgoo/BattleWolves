@@ -3985,7 +3985,7 @@ GameObject:
   - component: {fileID: 1528382395}
   - component: {fileID: 1528382394}
   - component: {fileID: 1528382393}
-  - component: {fileID: 1528382392}
+  - component: {fileID: 1528382396}
   m_Layer: 5
   m_Name: Kitchen
   m_TagString: Untagged
@@ -4012,19 +4012,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5.47, y: -3.1}
   m_SizeDelta: {x: 1.7373, y: 1.6943}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1528382392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528382390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33eb76aec62434bcda8126dfcdb46e16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneChange
-  nextScene: Kitchen
 --- !u!114 &1528382393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4069,8 +4056,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1528382392}
-        m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
+      - m_Target: {fileID: 1528382396}
+        m_TargetAssemblyTypeName: CallWolfToScene, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -4119,6 +4106,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528382390}
   m_CullTransparentMesh: 1
+--- !u!114 &1528382396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528382390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce4745e5f0bd67449c60cb9370d4b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CallWolfToScene
+  nextScene: Kitchen
+  wolf: {fileID: 1331155970}
 --- !u!1 &1582764837
 GameObject:
   m_ObjectHideFlags: 0

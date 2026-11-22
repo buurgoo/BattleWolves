@@ -5,7 +5,7 @@ public class SceneChange : MonoBehaviour
 {
     [SerializeField] private string nextScene;
 
-    public void ChangeScene()
+    public virtual void ChangeScene()
     {
         Debug.Log($"Home: Changing scene to: {nextScene}");
         SceneManager.LoadScene(nextScene);

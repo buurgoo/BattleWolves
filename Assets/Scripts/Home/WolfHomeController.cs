@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -92,8 +93,7 @@ public class WolfHomeController : MonoBehaviour
         {
             float moveTo = moveToPositionAction.ReadValue<float>();
             Vector3 point = cam.ScreenToWorldPoint(new Vector3(moveTo, 0, cam.nearClipPlane));
-            targetPos = point.x;
-            ChangeState(WolfState.Run);
+            CallToTarget(point.x);
         }
         else
         {
@@ -119,6 +119,12 @@ public class WolfHomeController : MonoBehaviour
 
         activeState?.UpdateState();
         UpdateStats();
+    }
+
+    public void CallToTarget(float position)
+    {
+        targetPos = position;
+        ChangeState(WolfState.Run);
     }
 
     public float GetMove()

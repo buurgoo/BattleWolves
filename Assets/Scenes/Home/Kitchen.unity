@@ -760,7 +760,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1538682094}
+    TrackingTarget: {fileID: 1688943297}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -792,7 +792,7 @@ Transform:
   m_GameObject: {fileID: 262922588}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000005293336, y: 0.000000057662938, z: -0.000000008918938, w: 1}
-  m_LocalPosition: {x: -5.0000014, y: -2.5900009, z: -10}
+  m_LocalPosition: {x: 0.22019884, y: -1.0358111, z: -10}
   m_LocalScale: {x: 6, y: 6, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1230,7 +1230,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000005293336, y: 0.000000057662938, z: 3.052293e-15, w: 1}
-  m_LocalPosition: {x: -5.000001, y: -0.5000012, z: -10}
+  m_LocalPosition: {x: 0.2201951, y: -0.500001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4123,38 +4123,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WolfController
   currentState: 0
   spawnPosition: {x: -5, y: -2.595012, z: 0}
-  moveAction:
-    m_Name: Move
+  moveToPositionAction:
+    m_Name: Move To Position
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 5a5336c0-6022-4239-bb0b-571a317036a2
+    m_Id: e328601e-d5cc-497f-ba2b-b91d388a0446
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 1D Axis
-      m_Id: 92d9ba9d-f4b2-4104-b6c6-8dffdf18baae
-      m_Path: 1DAxis
+    - m_Name: 
+      m_Id: 15bd1c52-9949-4e17-86d9-dc6a1d1c5d01
+      m_Path: <Mouse>/position/x
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: 5da972c8-a502-4318-b19e-8bb17381e446
-      m_Path: <Keyboard>/a
+      m_Action: Move To Position
+      m_Flags: 0
+    m_Flags: 0
+    m_Priority: 0
+  callAction:
+    m_Name: Call
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f15cb1f1-a1b1-413b-bd71-eb648d3c1b57
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ab274832-1690-4ba5-99a9-18a135b7f819
+      m_Path: <Mouse>/leftButton
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: a92c3f02-d84f-4b35-ae48-c38a7b5c152a
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
+      m_Action: Call
+      m_Flags: 0
     m_Flags: 0
     m_Priority: 0
   level: 1
@@ -4729,6 +4731,112 @@ Transform:
   - {fileID: 963149209}
   - {fileID: 1221695301}
   - {fileID: 1748796204}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1688943294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688943297}
+  - component: {fileID: 1688943296}
+  - component: {fileID: 1688943295}
+  m_Layer: 0
+  m_Name: CameraPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!50 &1688943295
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688943294}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1688943296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688943294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d03c29810112e439dc66e873ebe8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraMove
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ab5db1af-d370-48b9-ad66-1dec080cd0e5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 561c285f-467c-4729-b2d0-430d421e6e2a
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: b54bea7a-7d5c-441e-a0cb-760625286a20
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: d30ee6cd-b045-4d78-aa8c-cabf19090615
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+    m_Priority: 0
+--- !u!4 &1688943297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688943294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2202, y: -1.03581, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1736600884
@@ -5307,3 +5415,4 @@ SceneRoots:
   - {fileID: 393645385}
   - {fileID: 205109234}
   - {fileID: 233504831}
+  - {fileID: 1688943297}

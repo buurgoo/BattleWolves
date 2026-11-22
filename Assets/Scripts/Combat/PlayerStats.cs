@@ -15,7 +15,7 @@ public class PlayerStats
     public float cleanliness;
     public float bloodthirst;
     
-    public float currenthp;
+    public float startRemainingHP = 1f;
 
     public PlayerStats(System.Type skill1, System.Type skill2, System.Type skill3, System.Type skill4,
                             int level, float sleep, float hunger, float cleanliness, float bloodthirst, float currenthp)
@@ -31,7 +31,7 @@ public class PlayerStats
         this.hunger = hunger; 
         this.cleanliness = cleanliness;
         this.bloodthirst = bloodthirst;
-        this.currenthp = currenthp;
+        this.startRemainingHP = currenthp;
     }
 
     public PlayerStats(int level)
@@ -45,7 +45,7 @@ public class PlayerStats
         this.hunger = Mathf.Clamp01(hungry / 100f);
         this.cleanliness = 1f - Mathf.Clamp01(stinky / 100f);
         this.bloodthirst = Mathf.Clamp01(bloodthirst / 100f);
-        this.currenthp = Mathf.Clamp01(currenthp / 100f);
+        this.startRemainingHP = Mathf.Clamp01(currenthp / 100f);
     }
     
     public static PlayerStats GetHomeStats(Type skill1, Type skill2, Type skill3, Type skill4,

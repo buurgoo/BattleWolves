@@ -87,7 +87,8 @@ public abstract class BattleWolf : MonoBehaviour
         _baselineDef = (int)(_baseDef * (1 + _obtainedDef));
 
         _maxHP = _baselineHP;
-        _currentHP = _maxHP;
+        _currentHP = (int)((float)_maxHP * (float)playerStats.startRemainingHP);
+        Debug.Log($"start hp: {playerStats.startRemainingHP}");
     }
 
     public virtual void OnAwake() { }

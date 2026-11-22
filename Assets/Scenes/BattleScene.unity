@@ -3238,11 +3238,13 @@ MonoBehaviour:
   playerSkill2: {fileID: 1229204657}
   playerSkill3: {fileID: 1075573419}
   playerSkill4: {fileID: 1734989697}
-  endCombatPopup: {fileID: 0}
-  winnerText: {fileID: 0}
-  remainingHPText: {fileID: 0}
-  usedSkillsText: {fileID: 0}
-  rewardsText: {fileID: 0}
+  endCombatPopup: {fileID: 1013892248}
+  winnerText: {fileID: 476982156}
+  remainingHPText: {fileID: 1450082269}
+  usedSkillsText: {fileID: 1698333178}
+  rewardsText: {fileID: 1440601420}
+  backToHomeButton: {fileID: 93512881}
+  homeSceneName: Hall
   displayHP:
     m_PersistentCalls:
       m_Calls: []

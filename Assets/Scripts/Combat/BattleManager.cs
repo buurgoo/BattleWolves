@@ -132,7 +132,6 @@ public class BattleManager : MonoBehaviour
                 winnerName: player2Won ? "Player 2" : "Player 1",
                 remainingHP: winner.CurrentHP(),
                 maxHP: winner.MaxHP(),
-                usedSkills: winner.usedSkills,
                 xpReward: awardedXP,
                 moneyReward: awardedMoney
             );

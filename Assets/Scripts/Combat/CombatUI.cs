@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CombatUI : MonoBehaviour
@@ -28,8 +29,11 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private GameObject endCombatPopup;
     [SerializeField] private TextMeshProUGUI winnerText;
     [SerializeField] private TextMeshProUGUI remainingHPText;
-    [SerializeField] private TextMeshProUGUI usedSkillsText;
+    //[SerializeField] private TextMeshProUGUI usedSkillsText;
     [SerializeField] private TextMeshProUGUI rewardsText;
+    
+    [SerializeField] private Button backToHomeButton;
+    [SerializeField] private string homeSceneName = "Home";
 
     public UnityEvent<int, int, bool> displayHP;
     public UnityEvent<int, bool, bool> displayDamage;
@@ -43,6 +47,7 @@ public class CombatUI : MonoBehaviour
         displayAttack.AddListener(DisplayAttack);
         displayEffects.AddListener(DisplayEffects);
 
+        backToHomeButton.onClick.AddListener(ReturnToHome);
         endCombatPopup.SetActive(false);
     }
 
@@ -110,7 +115,7 @@ public class CombatUI : MonoBehaviour
         playerEffects.text = text;
     }
 
-    public void ShowEndCombatPopup(string winnerName, int remainingHP, int maxHP, List<string> usedSkills, float xpReward, int moneyReward)
+    public void ShowEndCombatPopup(string winnerName, int remainingHP, int maxHP, float xpReward, int moneyReward)
     {
         player1HP.gameObject.SetActive(false);
         player2HP.gameObject.SetActive(false);
@@ -129,14 +134,20 @@ public class CombatUI : MonoBehaviour
         winnerText.text = $"{winnerName} Wins!";
         remainingHPText.text = $"HP Left: {remainingHP}/{maxHP}";
         
-        usedSkillsText.text = usedSkills.Count > 0 
+        /*usedSkillsText.text = usedSkills.Count > 0 
             ? "Used Skills:\n" + string.Join(", ", usedSkills) 
-            : "Used Skills: None";
+            : "Used Skills: None";*/
 
         rewardsText.text = xpReward > 0 || moneyReward > 0
             ? $"Rewards:\n+{xpReward:0} XP | +{moneyReward} Coins"
             : "Rewards:\nNone";
 
         endCombatPopup.SetActive(true);
+    }
+    
+    
+    private void ReturnToHome()
+    {
+        SceneManager.LoadScene(homeSceneName);
     }
 }

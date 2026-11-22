@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -98,6 +97,13 @@ public class WolfHomeController : MonoBehaviour
         }
         else
         {
+            if (currentState == WolfState.Idle)
+            {
+                if (UnityEngine.Random.Range(0f, 1f) < 0.0005f)
+                {
+                    targetPos = rb.position.x + UnityEngine.Random.Range(-3f, 3f);
+                }
+            }
             if (currentState != WolfState.Eat &&
                 currentState != WolfState.Sleep &&
                 currentState != WolfState.BathTime)

@@ -111,6 +111,9 @@ public class WolfHomeController : MonoBehaviour
             bloodthirst = Mathf.Min(bloodthirst + 5f, 100f);
             
             WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
+            
+            //add check for max hp
+            System.WolfSessionData.SaveHP(HP);
         }
     }
 

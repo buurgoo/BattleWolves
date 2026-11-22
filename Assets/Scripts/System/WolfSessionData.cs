@@ -8,6 +8,8 @@ namespace System
         public static int level = 10;
         public static int Money = 10000; // Temp value for debug
         
+        public static float hp = 100f;
+        
         public static float currentXP = 0f;
         public static float requiredXP = 100f;
 
@@ -20,6 +22,7 @@ namespace System
         public static float hungry = 0f;
         public static float stinky = 0f;
         public static float bloodthirst = 0f;
+        public static float currenthp = 0f;
 
         public static void SaveNeeds(float currentSleepy, float currentHungry, float currentStinky, float currentBloodthirst)
         {
@@ -46,8 +49,26 @@ namespace System
         {
             return PlayerStats.GetHomeStats(
                 skill1, skill2, skill3, skill4,
-                level, sleepy, hungry, stinky, bloodthirst
+                level, sleepy, hungry, stinky, bloodthirst, currenthp
             );
+        }
+        
+        
+        public static void SaveHP(float currentHPPercent)
+        {
+            hp = Mathf.Clamp(currentHPPercent, 0f, 100f);
+        }
+
+        public static void SaveHPFromBattle(int currentBattleHP, int maxBattleHP)
+        {
+            if (maxBattleHP <= 0)
+            {
+                hp = 0f;
+                return;
+            }
+
+            float percent = ((float)currentBattleHP / maxBattleHP) * 100f;
+            hp = Mathf.Clamp(percent, 0f, 100f);
         }
     }
 }

@@ -130,7 +130,7 @@ public class BattleManager : MonoBehaviour
 
             ui.ShowEndCombatPopup(
                 winnerName: player2Won ? "Player 2" : "Player 1",
-                remainingHP: winner.CurrentHP(),
+                remainingHP: player1.CurrentHP(),
                 maxHP: winner.MaxHP(),
                 xpReward: awardedXP,
                 moneyReward: awardedMoney

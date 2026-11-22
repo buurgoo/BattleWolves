@@ -6,8 +6,8 @@ public class WolfIdleState : BaseWolfState
 
     public override void EnterState()
     {
-        // TODO: added Idle animation
         wolf.rb.linearVelocity = Vector2.zero;
+        wolf.animator.SetBool("isWalking", false);
     }
 
     public override void UpdateState() { }

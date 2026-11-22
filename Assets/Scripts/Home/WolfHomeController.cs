@@ -10,9 +10,14 @@ public class WolfHomeController : MonoBehaviour
 
     public InputAction moveAction;
     public Rigidbody2D rb { get; private set; }
+    public Animator animator { get; private set; }
 
     private SpriteRenderer sprite;
     private int faceDirection = 1;
+
+    [SerializeField] private int level = 1;
+    [SerializeField] private int currentXP = 0;
+    [SerializeField] private int requiredXP = 340125;
 
     [Header("Wolf Stats")]
     [SerializeField, Range(0, 100)] private float hp = 100f;
@@ -23,6 +28,10 @@ public class WolfHomeController : MonoBehaviour
 
     private float statsTimer = 0f;
 
+    public int Level => level;
+    public int CurrentXP => currentXP;
+    public int RequiredXP => requiredXP;
+
     public float HP => hp;
     public float Sleepy => sleepy;
     public float Hungry => hungry;
@@ -32,6 +41,7 @@ public class WolfHomeController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         
         sleepy = WolfSessionData.sleepy;
@@ -84,11 +94,6 @@ public class WolfHomeController : MonoBehaviour
         }
 
         activeState?.UpdateState();
-        if (currentState == WolfState.Eat ||
-            currentState == WolfState.Sleep ||
-            currentState == WolfState.BathTime) 
-                ChangeState(WolfState.Idle);
-        
         UpdateStats();
     }
 
@@ -100,8 +105,8 @@ public class WolfHomeController : MonoBehaviour
         {
             statsTimer -= 10f;
 
-            sleepy = Mathf.Min(sleepy + 5f, 100f);
-            hungry = Mathf.Min(hungry + 5f, 100f);
+            sleepy = Mathf.Min(sleepy + 1f, 100f);
+            hungry = Mathf.Min(hungry + 3f, 100f);
             stinky = Mathf.Min(stinky + 5f, 100f);
             bloodthirst = Mathf.Min(bloodthirst + 5f, 100f);
             
@@ -136,13 +141,20 @@ public class WolfHomeController : MonoBehaviour
     public void OnSleepButtonClicked()
     {
         Debug.Log("Home: Sleep button clicked");
-        ChangeState(WolfState.Sleep);
+        if (currentState == WolfState.Sleep) ChangeState(WolfState.Idle);
+        else ChangeState(WolfState.Sleep);
     }
 
     public void OnBathButtonClicked()
     {
         Debug.Log("Home: Bath button clicked");
         ChangeState(WolfState.BathTime);
+    }
+
+    public void OnActionAnimationFinished()
+    {
+        if (currentState == WolfState.Eat)
+            ChangeState(WolfState.Idle);
     }
 
     private void FixedUpdate()

@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,12 @@ public class WolfHomeController : MonoBehaviour
     [SerializeField] private Vector3 spawnPosition = new Vector3(-5f, -2.595012f, 0f);
     private BaseWolfState activeState;
 
-    public InputAction moveAction;
+    public InputAction moveToPositionAction;
+    public InputAction callAction;
+    private float targetPos;
+
+    private Camera cam;
+
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
 
@@ -48,6 +54,9 @@ public class WolfHomeController : MonoBehaviour
         hungry = WolfSessionData.hungry;
         stinky = WolfSessionData.stinky;
         bloodthirst = WolfSessionData.bloodthirst;
+
+        cam = Camera.main;
+        targetPos = spawnPosition.x;
     }
 
     private void Start()
@@ -68,6 +77,7 @@ public class WolfHomeController : MonoBehaviour
         {
             WolfState.Idle     => new WolfIdleState(this),
             WolfState.Walk     => new WolfWalkState(this),
+            WolfState.Run      => new WolfRunState(this),
             WolfState.Eat      => new WolfEatState(this),
             WolfState.Sleep    => new WolfSleepState(this),
             WolfState.BathTime => new WolfBathTimeState(this),
@@ -79,22 +89,42 @@ public class WolfHomeController : MonoBehaviour
 
     private void Update()
     {
-        float move = moveAction.ReadValue<float>();
-
-        if (currentState != WolfState.Eat &&
-            currentState != WolfState.Sleep &&
-            currentState != WolfState.BathTime)
+        if (callAction.triggered)
         {
-            if (Mathf.Abs(move) > 0.01f)
+            float moveTo = moveToPositionAction.ReadValue<float>();
+            Vector3 point = cam.ScreenToWorldPoint(new Vector3(moveTo, 0, cam.nearClipPlane));
+            targetPos = point.x;
+            ChangeState(WolfState.Run);
+        }
+        else
+        {
+            if (currentState != WolfState.Eat &&
+                currentState != WolfState.Sleep &&
+                currentState != WolfState.BathTime)
             {
-                faceDirection = move < 0 ? -1 : 1;
-                ChangeState(WolfState.Walk);
+                if (Mathf.Abs(GetMove()) > 0.01f)
+                {
+                    if (currentState == WolfState.Run) { ChangeState(WolfState.Run); }
+                    else { ChangeState(WolfState.Walk); }
+                }
+                else ChangeState(WolfState.Idle);
             }
-            else ChangeState(WolfState.Idle);
         }
 
         activeState?.UpdateState();
         UpdateStats();
+    }
+
+    public float GetMove()
+    {
+        float posDiff = targetPos - rb.position.x;
+        if (Math.Abs(posDiff) > 0.1f)
+        {
+            float move = Math.Sign(posDiff);
+            faceDirection = move < 0 ? -1 : 1;
+            return move;
+        }
+        return 0;
     }
 
     private void UpdateStats()
@@ -164,17 +194,18 @@ public class WolfHomeController : MonoBehaviour
     {
         activeState?.FixedUpdateState();
     }
-
     private void OnEnable()
     {
-        moveAction.Enable();
+        callAction.Enable();
+        moveToPositionAction.Enable();
     }
 
     private void OnDisable()
     {
-        moveAction.Disable();
+        callAction.Disable();
+        moveToPositionAction.Disable();
     }
-    
+
     private void OnDestroy()
     {
         WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);

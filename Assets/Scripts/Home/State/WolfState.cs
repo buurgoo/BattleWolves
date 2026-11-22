@@ -2,7 +2,8 @@ public enum WolfState
 {
     Idle = 0,
     Walk = 1,
-    Eat = 2,
-    Sleep = 3,
-    BathTime = 4
+    Run = 2,
+    Eat = 3,
+    Sleep = 4,
+    BathTime = 5
 }

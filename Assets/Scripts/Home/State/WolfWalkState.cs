@@ -13,7 +13,7 @@ public class WolfWalkState : BaseWolfState
 
     public override void FixedUpdateState()
     {
-        float move = wolf.moveAction.ReadValue<float>();
+        float move = wolf.GetMove();
         wolf.rb.linearVelocity = new Vector2(move * speed, 0f);    
     }
 

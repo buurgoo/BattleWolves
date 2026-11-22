@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public abstract class BattleWolf : MonoBehaviour
 {
     [SerializeField] protected BattleManager battleManager;
+    
+    public List<string> usedSkills = new List<string>();
 
     protected int _baseAtk = 0;
     protected float _obtainedAtk = 0f;
@@ -32,6 +35,7 @@ public abstract class BattleWolf : MonoBehaviour
 
     public void Init()
     {
+        usedSkills.Clear();
         InitBaseStats();
         InitBaselineStats();
         OnAwake();
@@ -189,6 +193,17 @@ public abstract class BattleWolf : MonoBehaviour
     }
 
     public abstract void SelectSkill();
+    
+    public void RecordUsedSkill(Skill skill)
+    {
+        if (skill == null) return;
+    
+        string skillName = SkillDescriptions.skillDescriptions.ContainsKey(skill.skillId)
+            ? SkillDescriptions.skillDescriptions[skill.skillId].name
+            : skill.GetType().Name;
+
+        usedSkills.Add(skillName);
+    }
 
     public void SetLingeringSkill(LingeringSkill effect)
     {

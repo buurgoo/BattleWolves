@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BattleManager : MonoBehaviour
 {
@@ -6,8 +7,13 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public BattleWolf player2;
 
     [SerializeField] private CombatUI ui;
+    
+    [Header("Match Rewards")]
+    [SerializeField] private float winXPReward = 50f;
+    [SerializeField] private int winMoneyReward = 25;
 
     private bool _currentTurn = false;
+    private bool _isCombatOver = false;
 
     public void Start()
     {   
@@ -58,6 +64,8 @@ public class BattleManager : MonoBehaviour
 
     private void TurnStart()
     {
+        if (_isCombatOver) return;
+        
         BattleWolf player = GetPlayer();
         Debug.Log($"Waiting for '{_currentTurn}' player.");
 
@@ -67,13 +75,19 @@ public class BattleManager : MonoBehaviour
         if (player.selectedSkill != null) 
         { 
             player.selectedSkill.Cast(player, GetOponent());
+            player.RecordUsedSkill(player.selectedSkill);
             ui.displayAttack.Invoke(player.selectedSkill, _currentTurn);
+            player.selectedSkill = null;
+            
+            if (CheckCombatEnd()) return;
         }
         player.SelectSkill();
     }
 
     public void PlayerSelectedSkill(BattleWolf player)
     {
+        if (_isCombatOver) return;
+        
         if (player == GetPlayer())
         {
             TurnContinue();
@@ -84,12 +98,48 @@ public class BattleManager : MonoBehaviour
     {
         BattleWolf player = GetPlayer();
         player.selectedSkill.Cast(player, GetOponent());
+        player.RecordUsedSkill(player.selectedSkill);
         ui.displayAttack.Invoke(player.selectedSkill, _currentTurn);
         Debug.Log($"'{_currentTurn}' player finished turn.");
 
         player.selectedSkill = null;
-        SwitchTurn();
 
+        if (CheckCombatEnd()) return;
+
+        SwitchTurn();
         TurnStart();
+    }
+    
+    private bool CheckCombatEnd()
+    {
+        if (player1.CurrentHP() <= 0 || player2.CurrentHP() <= 0)
+        {
+            _isCombatOver = true;
+            bool player2Won = player1.CurrentHP() <= 0;
+            BattleWolf winner = player2Won ? player2 : player1;
+
+            float awardedXP = 0f;
+            int awardedMoney = 0;
+
+            if (!player2Won)
+            {
+                awardedXP = winXPReward;
+                awardedMoney = winMoneyReward;
+                System.WolfSessionData.AddRewards(awardedXP, awardedMoney);
+            }
+
+            ui.ShowEndCombatPopup(
+                winnerName: player2Won ? "Player 2" : "Player 1",
+                remainingHP: winner.CurrentHP(),
+                maxHP: winner.MaxHP(),
+                usedSkills: winner.usedSkills,
+                xpReward: awardedXP,
+                moneyReward: awardedMoney
+            );
+
+            return true;
+        }
+
+        return false;
     }
 }

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CombatUI : MonoBehaviour
 {
@@ -24,6 +25,13 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Button playerSkill4;
 
     [SerializeField] private TextMeshProUGUI gameOver;
+    
+    [Header("End Combat Popup")]
+    [SerializeField] private GameObject endCombatPopup;
+    [SerializeField] private TextMeshProUGUI winnerText;
+    [SerializeField] private TextMeshProUGUI remainingHPText;
+    [SerializeField] private TextMeshProUGUI usedSkillsText;
+    [SerializeField] private TextMeshProUGUI rewardsText;
 
     public UnityEvent<int, int, bool> displayHP;
     public UnityEvent<int, bool, bool> displayDamage;
@@ -38,6 +46,8 @@ public class CombatUI : MonoBehaviour
         displayAttack.AddListener(DisplayAttack);
         displayEffects.AddListener(DisplayEffects);
         displayGameOver.AddListener(DisplayGameOver);
+        
+        endCombatPopup.SetActive(false);
 
         gameOver.gameObject.SetActive(false);
     }

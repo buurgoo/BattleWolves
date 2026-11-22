@@ -11,7 +11,7 @@ public abstract class BattleWolfUI : BattleWolf
         ui.displayDamage.Invoke(damage, playerId, true);
         ui.displayHP.Invoke(CurrentHP(), MaxHP(), playerId);
 
-        if (CurrentHP() == 0) { ui.displayGameOver.Invoke(!playerId); }
+        //if (CurrentHP() == 0) { ui.displayGameOver.Invoke(!playerId); }
 
         return damage;
     }
@@ -22,7 +22,7 @@ public abstract class BattleWolfUI : BattleWolf
         ui.displayDamage.Invoke(attackDamage, playerId, true);
         ui.displayHP.Invoke(CurrentHP(), MaxHP(), playerId);
 
-        if (CurrentHP() == 0) { ui.displayGameOver.Invoke(!playerId); }
+        //if (CurrentHP() == 0) { ui.displayGameOver.Invoke(!playerId); }
     }
 
     public override int Heal(float heal)

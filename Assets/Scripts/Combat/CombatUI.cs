@@ -1,9 +1,9 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class CombatUI : MonoBehaviour
 {
@@ -24,8 +24,6 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Button playerSkill3;
     [SerializeField] private Button playerSkill4;
 
-    [SerializeField] private TextMeshProUGUI gameOver;
-    
     [Header("End Combat Popup")]
     [SerializeField] private GameObject endCombatPopup;
     [SerializeField] private TextMeshProUGUI winnerText;
@@ -37,7 +35,6 @@ public class CombatUI : MonoBehaviour
     public UnityEvent<int, bool, bool> displayDamage;
     public UnityEvent<Skill, bool> displayAttack;
     public UnityEvent<LingeringSkill[], bool> displayEffects;
-    public UnityEvent<bool> displayGameOver;
 
     public void Start()
     {
@@ -45,11 +42,8 @@ public class CombatUI : MonoBehaviour
         displayDamage.AddListener(DisplayDamage);
         displayAttack.AddListener(DisplayAttack);
         displayEffects.AddListener(DisplayEffects);
-        displayGameOver.AddListener(DisplayGameOver);
-        
-        endCombatPopup.SetActive(false);
 
-        gameOver.gameObject.SetActive(false);
+        endCombatPopup.SetActive(false);
     }
 
     public void SetSkillButtonText(System.Type skillType1, System.Type skillType2, 
@@ -116,7 +110,7 @@ public class CombatUI : MonoBehaviour
         playerEffects.text = text;
     }
 
-    private void DisplayGameOver(bool winner)
+    public void ShowEndCombatPopup(string winnerName, int remainingHP, int maxHP, List<string> usedSkills, float xpReward, int moneyReward)
     {
         player1HP.gameObject.SetActive(false);
         player2HP.gameObject.SetActive(false);
@@ -132,9 +126,17 @@ public class CombatUI : MonoBehaviour
         playerSkill3.gameObject.SetActive(false);
         playerSkill4.gameObject.SetActive(false);
 
-        gameOver.gameObject.SetActive(true);
+        winnerText.text = $"{winnerName} Wins!";
+        remainingHPText.text = $"HP Left: {remainingHP}/{maxHP}";
+        
+        usedSkillsText.text = usedSkills.Count > 0 
+            ? "Used Skills:\n" + string.Join(", ", usedSkills) 
+            : "Used Skills: None";
 
-        if (!winner) { gameOver.text = "Player 1 wins!"; }
-        else { gameOver.text = "Player 2 wins!"; }
+        rewardsText.text = xpReward > 0 || moneyReward > 0
+            ? $"Rewards:\n+{xpReward:0} XP | +{moneyReward} Coins"
+            : "Rewards:\nNone";
+
+        endCombatPopup.SetActive(true);
     }
 }

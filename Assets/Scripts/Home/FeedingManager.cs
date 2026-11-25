@@ -10,18 +10,18 @@ public class FeedingManager : MonoBehaviour
 
     public void OnRabbitButtonClicked()
     {
+        Debug.Log("Eat: Rabbit button clicked");
         wolf.ReduceHunger(25f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Rabbit button clicked");
     }
 
     public void OnChickenButtonClicked()
     {
+        Debug.Log("Eat: Chicken button clicked");
         wolf.ReduceHunger(17f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Chicken button clicked");
     }
 
    public void OnTurkeyButtonClicked()
@@ -122,11 +122,13 @@ public class FeedingManager : MonoBehaviour
 
     public void OpenMenu()
     {
+        Debug.Log("Feeding menu opened");
         feedingMenu.SetActive(true);
     }
 
     public void CloseMenu()
     {
+        Debug.Log("Feeding menu closed");
         feedingMenu.SetActive(false);
     }
 }

@@ -126,6 +126,10 @@ public class WolfHomeController : MonoBehaviour
 
     public void CallToTarget(float position)
     {
+        if (currentState == WolfState.Eat) return;
+        if (currentState == WolfState.Sleep) return;
+        if (currentState == WolfState.BathTime) return;
+        
         targetPos = position;
         ChangeState(WolfState.Run);
     }

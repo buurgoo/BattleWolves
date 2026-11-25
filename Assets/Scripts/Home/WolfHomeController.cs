@@ -44,6 +44,9 @@ public class WolfHomeController : MonoBehaviour
     public float Stinky => stinky;
     public float Bloodthirst => bloodthirst;
 
+    [SerializeField] private FeedingManager feedingManager;
+    public FeedingManager FeedingManager => feedingManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -175,6 +178,12 @@ public class WolfHomeController : MonoBehaviour
     {
         stinky = Mathf.Max(stinky - amount, 0f);
         WolfSessionData.SaveNeeds(sleepy, hungry, stinky, bloodthirst);
+    }
+
+    public void Healing(float amount)
+    {
+        hp = Mathf.Clamp(hp + amount, 0f, 100f);
+        WolfSessionData.SaveHP(hp);
     }
 
     public void OnEatButtonClicked()

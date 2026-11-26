@@ -5,6 +5,8 @@ namespace System
 {
     public static class WolfSessionData
     {
+        public static readonly Dictionary<HuntingGroundsItems, int> FridgeItems = new();
+
         public static int level = 10;
         public static int Money = 10000; // Temp value for debug
         

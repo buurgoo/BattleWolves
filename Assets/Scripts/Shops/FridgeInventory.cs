@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 public static class FridgeInventory
 {
-    private static readonly Dictionary<HuntingGroundsItems, int> items = new();
+    private static Dictionary<HuntingGroundsItems, int> items => WolfSessionData.FridgeItems;
 
     public static void Add(HuntingGroundsItems food)
     {

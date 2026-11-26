@@ -10,6 +10,7 @@ public class FeedingManager : MonoBehaviour
 
     public void OnRabbitButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Rabbit)) return;
         Debug.Log("Eat: Rabbit button clicked");
         wolf.ReduceHunger(25f);
         CloseMenu();
@@ -18,6 +19,7 @@ public class FeedingManager : MonoBehaviour
 
     public void OnChickenButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Chicken)) return;
         Debug.Log("Eat: Chicken button clicked");
         wolf.ReduceHunger(17f);
         CloseMenu();
@@ -26,6 +28,8 @@ public class FeedingManager : MonoBehaviour
 
    public void OnTurkeyButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Turkey)) return;
+        Debug.Log("Eat: Turkey button clicked");
         wolf.ReduceHunger(17f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
@@ -34,91 +38,108 @@ public class FeedingManager : MonoBehaviour
 
     public void OnPorkButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Pork)) return;
+        Debug.Log("Eat: Pork button clicked");
         wolf.ReduceHunger(30f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Pork button clicked");
     }
 
     public void OnBeefButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Beef)) return;
+        Debug.Log("Eat: Beef button clicked");
         wolf.ReduceHunger(30f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Beef button clicked");
     }
 
     public void OnPotatoButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Potato)) return;
+        Debug.Log("Eat: Potato button clicked");
         wolf.ReduceHunger(5f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Potato button clicked");
     }
 
     public void OnSausageButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Sausage)) return;
+        Debug.Log("Eat: Sausage button clicked");
         wolf.ReduceHunger(12f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Sausage button clicked");
     }
 
     public void OnDumplingsButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Dumplings)) return;
+        Debug.Log("Eat: Dumplings button clicked");
         wolf.ReduceHunger(25f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Dumplings button clicked");
     }
 
-    public void OnVarenikiButtonClicked()
+    public void OnVarenykyButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Varenyky)) return;
+        Debug.Log("Eat: Varenyky button clicked");
         wolf.ReduceHunger(20f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Vareniki button clicked");
     }
 
     public void OnBorschtButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Borscht)) return;
+        Debug.Log("Eat: Borscht button clicked");
         wolf.ReduceHunger(15f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Borscht button clicked");
     }
 
     public void OnTeaButtonClicked()
     {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Tea)) return;
+        Debug.Log("Eat: Tea button clicked");
         wolf.ReduceHunger(5f);
         CloseMenu();
         wolf.animator.SetTrigger("isEating");
-        Debug.Log("Eat: Tea button clicked");
     }
 
-    // public void OnMedicine10ButtonClicked()
-    // {
-    //     wolf.Healing(10f);
-    //     CloseMenu();
-    //     // wolf.animator.SetTrigger("isEating"); 
-    //     Debug.Log("Healing: Medicine x10 button clicked");
-    // }
+    public void OnMedicine10ButtonClicked()
+    {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Tea)) return;
+        Debug.Log("Healing: Medicine x10 button clicked");
+        wolf.Healing(10f);
+        CloseMenu();
+        wolf.animator.SetTrigger("isEating"); 
+    }
 
-    // public void OnMedicine20ButtonClicked()
-    // {
-    //     wolf.Healing(20f);
-    //     CloseMenu();
-    //     // wolf.animator.SetTrigger("isEating"); 
-    //     Debug.Log("Healing: Medicine x20 button clicked");
-    // }
+    public void OnMedicine20ButtonClicked()
+    {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Tea)) return;
+        Debug.Log("Healing: Medicine x20 button clicked");
+        wolf.Healing(20f);
+        CloseMenu();
+        wolf.animator.SetTrigger("isEating"); 
+    }
 
-    // public void OnMedicine30ButtonClicked()
-    // {
-    //     wolf.Healing(30f);
-    //     CloseMenu();
-    //     // wolf.animator.SetTrigger("isEating"); 
-    //     Debug.Log("Healing: Medicine x30 button clicked");
-    // }
+    public void OnMedicine30ButtonClicked()
+    {
+        if (!FridgeInventory.Remove(HuntingGroundsItems.Tea)) return;
+        Debug.Log("Healing: Medicine x30 button clicked");
+        wolf.Healing(30f);
+        CloseMenu();
+        wolf.animator.SetTrigger("isEating"); 
+    }
+
+    public void OnCloseButtonClicked()
+    {
+        CloseMenu();
+        wolf.ChangeState(WolfState.Idle);
+    }
 
     public void OpenMenu()
     {

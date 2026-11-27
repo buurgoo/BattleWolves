@@ -266,7 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 4
+  skillLevel: 0
   countText: {fileID: 1925508950}
 --- !u!1 &94107840
 GameObject:
@@ -822,7 +824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 12
+  skillLevel: 0
   countText: {fileID: 2078230152}
 --- !u!1 &179272191
 GameObject:
@@ -2625,6 +2629,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1742683863}
+  - {fileID: 529405429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
@@ -2685,17 +2690,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529405428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.00000005293336, y: -0.000000057662938, z: -3.052293e-15, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10.000164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 787944834}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 960}
+  m_AnchoredPosition: {x: 539.7798, y: 960.5}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &529405430
@@ -2983,7 +2988,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 11
+  skillLevel: 0
   countText: {fileID: 1804876768}
 --- !u!1 &560166350
 GameObject:
@@ -3499,7 +3506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 1
+  skillLevel: 0
   countText: {fileID: 1611081813}
 --- !u!1 &661515903
 GameObject:
@@ -5437,7 +5446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 2
+  skillLevel: 0
   countText: {fileID: 1572700461}
 --- !u!1 &978739017
 GameObject:
@@ -5935,7 +5946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 10
+  skillLevel: 0
   countText: {fileID: 925128927}
 --- !u!1 &1075652426
 GameObject:
@@ -6084,7 +6097,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 0
+  skillLevel: 0
   countText: {fileID: 1546214694}
 --- !u!1 &1092807724
 GameObject:
@@ -6582,7 +6597,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 8
+  skillLevel: 0
   countText: {fileID: 2014979161}
 --- !u!1 &1170515576
 GameObject:
@@ -7869,7 +7886,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 3
+  skillLevel: 0
   countText: {fileID: 359369713}
 --- !u!1 &1436307219
 GameObject:
@@ -8093,7 +8112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 5
+  skillLevel: 0
   countText: {fileID: 1532317943}
 --- !u!1 &1485101447
 GameObject:
@@ -8379,7 +8400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 6
+  skillLevel: 0
   countText: {fileID: 661515905}
 --- !u!1 &1532317941
 GameObject:
@@ -10410,7 +10433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 7
+  skillLevel: 0
   countText: {fileID: 848996931}
 --- !u!1 &1901629904
 GameObject:
@@ -11370,7 +11395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 9
+  skillLevel: 0
   countText: {fileID: 2037425803}
 --- !u!1 &2042578205
 GameObject:
@@ -11832,7 +11859,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da64e3b8855149178fae0a3a89354a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FridgeItemUI
+  inventoryType: 0
   food: 13
+  skillLevel: 0
   countText: {fileID: 688714452}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -11845,7 +11874,6 @@ SceneRoots:
   - {fileID: 262922592}
   - {fileID: 393645385}
   - {fileID: 205109234}
-  - {fileID: 529405429}
   - {fileID: 1991394773}
   - {fileID: 233504831}
   - {fileID: 1688943297}

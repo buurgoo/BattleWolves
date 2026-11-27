@@ -4,9 +4,16 @@ using TMPro;
 
 public enum SkillLevel
 {
-    // I don't rememder wath we need here
-    skill_1 = 0,
-    skill_2 = 1,
+    Bite = 0,
+    Rage = 1,
+    Go_for_the_Throat = 2,
+    Body_Slam = 3,
+    Lick_your_Wounds = 4,
+    Intimidate = 5,
+    Scratch = 6,
+    Strike_Back = 7,
+    Finish_off_the_Wounded = 8,
+    Strike = 9,
 }
 
 public class DreamBody : MonoBehaviour
@@ -27,8 +34,16 @@ public class DreamBody : MonoBehaviour
     {
         return skill switch
         {
-            SkillLevel.skill_1 => 25,
-            SkillLevel.skill_2 => 20,
+            SkillLevel.Bite => 25,
+            SkillLevel.Rage => 20,
+            SkillLevel.Go_for_the_Throat => 30,
+            SkillLevel.Body_Slam => 25,
+            SkillLevel.Lick_your_Wounds => 15,
+            SkillLevel.Intimidate => 35,
+            SkillLevel.Scratch => 10,
+            SkillLevel.Strike_Back => 20,
+            SkillLevel.Finish_off_the_Wounded => 40,
+            SkillLevel.Strike => 30,
             _ => 0
         };
     }

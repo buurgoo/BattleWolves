@@ -10,7 +10,7 @@ public static class SkillsInventory
         items[skill]++;
     }
 
-    public static int GetCount(SkillLevel skill)
+    public static int GetSkillLevel(SkillLevel skill)
     {
         return items.GetValueOrDefault(skill, 0);
     }
